@@ -10,26 +10,21 @@
     "128": "icons/icon128.png"
   },
   "default_locale": "en",
-  "background": {
-    "scripts": [
-      "src/bg/background.js"
-    ],
-    "persistent": true
-  },
   "content_scripts": [
     {
       "matches": [
         "http://www.neopets.com/*"
       ],
       "js": [
-        "src/inject/inject.js"
+        "contentscript.js"
       ]
     }
-  ],
-  "web_accessible_resources": [ "src/inject/neopetsInit.js",
-								"src/inject/neopetsCollection.js",
-								"src/inject/neopetsNewToOld.js",
-								"src/inject/neopetsMain.js"],
+  ],  
+  "web_accessible_resources": [ "src/jquery.js",
+								"src/neopetsInit.js",
+								"src/neopetsCollection.js",
+								"src/neopetsNewToOld.js",
+								"src/neopetsMain.js"],
   "permissions": [
 	"http://*/"
   ]
