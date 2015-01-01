@@ -26,7 +26,10 @@
       ]
     }
   ],
-  "web_accessible_resources": [ "src/inject/oldNeopetsImageScript.js"],
+  "web_accessible_resources": [ "src/inject/neopetsInit.js",
+								"src/inject/neopetsCollection.js",
+								"src/inject/neopetsNewToOld.js",
+								"src/inject/neopetsMain.js"],
   "permissions": [
 	"http://*/"
   ]
