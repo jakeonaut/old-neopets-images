@@ -1,10 +1,7 @@
 2. TODO:
-	1. sidebar images
 	2. create a neopets (override select_pet script
 	3. quickref	(have to disable flash and replace with image/update div's background image)
 	4. petprofile (have to disable flash and replace with image)
-	5. rainbowpool
-	-Fetching from pet profile page almost never works
 	6. Adopt a Neopet pages (http://www.neopets.com/pound/adopt.phtml)
 3. Bug:
 	-$ is not defined inventory

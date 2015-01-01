@@ -24,6 +24,7 @@
 								"src/neopetsInit.js",
 								"src/neopetsCollection.js",
 								"src/neopetsNewToOld.js",
+								"src/neopetsMisc.js",
 								"src/neopetsMain.js"],
   "permissions": [
 	"http://*/"

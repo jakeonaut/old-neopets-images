@@ -30,9 +30,11 @@ oldNeopetsChrome.ChangeImage = function(image, new_img_id, old_img_postfix){
 }
 
 oldNeopetsChrome.ChangeAllImages = function(image){
+	oldNeopetsChrome.RainbowPoolScript();
 	//will cycle through all the actual img tags
 	for (var i = 0; i < $("img").length; i++){
 		var image = $($("img")[i]);
+		$(image).attr('original_src', $(image).attr('src'));
 		//Exchange all img with a species/color/gender id
 		if (image.attr('src').indexOf("pets.neopets.com/cp/") >= 0){
 			oldNeopetsChrome.ChangeImageByID(image);
@@ -54,5 +56,28 @@ oldNeopetsChrome.ChangeAllImages = function(image){
 				}
 			});
 		}
+
+		//Just in case my image switch thing fails (i.e. for a pet color/species combo that never existed before
+		$(image).error(function(){
+			$(this).attr('src', $(this).attr('original_src'));
+		});
+	}
+}
+
+oldNeopetsChrome.RainbowPoolScript = function(){
+	try{		
+		set_pet_img = function(url, color_name) {
+			var pet_img = document.getElementById('rp_pet_img');
+			pet_img.src = url;
+			oldNeopetsChrome.ChangeImageByID($(pet_img));
+			$(pet_img).error(function(){
+				$(this).attr('src', url);
+			});
+
+			var pet_title = document.getElementById('rp_pet_title');
+			pet_title.innerHTML = color_name;
+		}
+
+	}catch(err){
 	}
 }
