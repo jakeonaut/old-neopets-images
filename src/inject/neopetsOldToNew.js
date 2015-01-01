@@ -1,0 +1,3 @@
+oldNeopetsChrome.ChangeImage = function(image){
+	
+}
