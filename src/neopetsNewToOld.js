@@ -30,10 +30,29 @@ oldNeopetsChrome.ChangeImage = function(image, new_img_id, old_img_postfix){
 }
 
 oldNeopetsChrome.ChangeAllImages = function(image){
+	//will cycle through all the actual img tags
 	for (var i = 0; i < $("img").length; i++){
 		var image = $($("img")[i]);
+		//Exchange all img with a species/color/gender id
 		if (image.attr('src').indexOf("pets.neopets.com/cp/") >= 0){
 			oldNeopetsChrome.ChangeImageByID(image);
+		}
+		//Exchange all img with the actual pet name in the url
+		else if (image.attr('src').indexOf("pets.neopets.com/cpn/") >= 0){
+			//make an ajax call to find out the redirected img src
+			$.ajax({
+				type: "GET",
+				url: "http://cakeandturtles.nfshost.com/getRedirect.php",
+				data: {url: image.attr('src')},
+				local_image: image,
+				//upon success
+				//change img tag's src to be the redirected img src
+				//and proceed as usual
+				success: function(final_url){
+					$(this.local_image).attr('src', final_url);
+					oldNeopetsChrome.ChangeImageByID(this.local_image);
+				}
+			});
 		}
 	}
 }
