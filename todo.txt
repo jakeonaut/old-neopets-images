@@ -1,6 +1,9 @@
 2. TODO:
-	6. Adopt a Neopet pages (http://www.neopets.com/pound/adopt.phtml)
 	2. create a neopets (override select_pet script
+	3. Add more quicklinks on the toolbar (see neoexplorer + rainbowpool)
+		-dailies:
+			
+	4. add jelly neo avatar cheat sheet link on profile page (and site preference page)
 	7. add quickchange active pet on sidebar?
 	8. the battledome
 	9. old neopets explore
@@ -10,3 +13,4 @@
 	-http://www.sunnyneo.com/rainbowpool.php?species=buzz&colour=zombie#info
 	-go through with all noclothes....
 		-will putting on any clothes mess up my sidebar algorithm??
+	-also some neopets aren't caught (colours w/o paintbrushes (alien))

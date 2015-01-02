@@ -8,7 +8,7 @@ var loadScript = function(scriptName, callback){
 	};
 }
 
-var scripts = ["jquery", "neopetsInit", "neopetsCollection", "neopetsAdoption", "neopetsNewToOld", "neopetsMisc", "neopetsMain"];
+var scripts = ["jquery", "neopetsInit", "neopetsCollection", "neopetsAdoption", "neopetsNewToOld", "neopetsMisc", "neopetsNavigation", "neopetsMain"];
 var callback = function(){};
 for (var i = scripts.length-1; i >= 0; i--){
 	callback = loadScript.bind(this, scripts[i], callback);
