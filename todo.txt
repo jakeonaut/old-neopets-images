@@ -1,10 +1,9 @@
 2. TODO:
 	2. create a neopets (override select_pet script
-	3. quickref	(have to disable flash and replace with image/update div's background image)
 	4. petprofile (have to disable flash and replace with image)
 	6. Adopt a Neopet pages (http://www.neopets.com/pound/adopt.phtml)
+	7. add quickchange active pet on sidebar?
 3. Bug:
-	-$ is not defined inventory
 	-there are a number of rainbowpool options that don't work correctly but should
 	-Abandoned aishas, bruce, ixi, elephante?
 	-http://www.sunnyneo.com/rainbowpool.php?species=buzz&colour=zombie#info
