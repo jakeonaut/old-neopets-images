@@ -1,8 +1,9 @@
 2. TODO:
-	2. create a neopets (override select_pet script
-	4. petprofile (have to disable flash and replace with image)
 	6. Adopt a Neopet pages (http://www.neopets.com/pound/adopt.phtml)
+	2. create a neopets (override select_pet script
 	7. add quickchange active pet on sidebar?
+	8. the battledome
+	9. old neopets explore
 3. Bug:
 	-there are a number of rainbowpool options that don't work correctly but should
 	-Abandoned aishas, bruce, ixi, elephante?

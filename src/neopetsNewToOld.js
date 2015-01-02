@@ -4,6 +4,7 @@ oldNeopetsChrome.ChangeAllImages = function(image){
 	oldNeopetsChrome.RainbowPoolScript();
 	if (oldNeopetsChrome.disable_pet_customization){
 		oldNeopetsChrome.QuickRefCustomizationScript();
+		oldNeopetsChrome.PetLookupScript();
 	}
 	//will cycle through all the actual img tags
 	for (var i = 0; i < $("img").length; i++){
@@ -112,6 +113,9 @@ oldNeopetsChrome.RainbowPoolScript = function(){
 }
 
 oldNeopetsChrome.QuickRefCustomizationScript = function(){
+	var url = window.location.href;
+	if (url.indexOf("http://www.neopets.com/quickref.phtml") < 0) return;
+
 	for (var i = 0; i < $("div").length; i++){
 		var div = $($('div')[i]);
 		if ($(div).hasClass('pet_image')){
@@ -125,6 +129,7 @@ oldNeopetsChrome.QuickRefCustomizationScript = function(){
 				$(div).css('background-image', "url('"+$(image).attr('src')+"')");
 				//Need to handle the case for incorrect background-images
 				$(image)[0].onerror = function(tdiv){
+					this.onerror = "";
 					$(tdiv).css('background-image', $(tdiv).attr('original_src'));
 					$(tdiv).css('background-size', '');
 					$(tdiv).css('background-position', '');
@@ -143,4 +148,42 @@ oldNeopetsChrome.QuickRefCustomizationScript = function(){
 	}
 	
 	$("[id=CustomNeopetView]").css('display', 'none');
+}
+
+oldNeopetsChrome.PetLookupScript = function(){
+	var url = window.location.href;
+	if (url.indexOf("http://www.neopets.com/petlookup.phtml") < 0) return;
+	
+	var pet_name = url.substring('http://www.neopets.com/petlookup.phtml?pet='.length);
+	var image = $(document.createElement('img'));
+	$(image).attr('src', "http://pets.neopets.com/cpn/"+pet_name+"/1/2.png");
+	$(image).attr('original_src', $(image).attr('src'));
+	$.ajax({
+		type: "GET",
+		url: "http://cakeandturtles.nfshost.com/getRedirect.php",
+		data: {url: image.attr('src')},
+		local_image: image,
+		//upon success
+		//change img tag's src to be the redirected img src
+		//and proceed as usual
+		success: function(final_url){
+			$(this.local_image).attr('src', final_url);
+			if (oldNeopetsChrome.ChangeImageByID(image)){
+				$(image).width(200);
+				$(image).height(200);
+				$(image).css('padding', '50px');
+				var custom_neopet_view = $("#CustomNeopetView");
+				$("#CustomNeopetView").replaceWith(image);
+				
+				$(image)[0].onerror = function(){
+					this.onerror = "";
+					$(image).attr('src', $(image).attr('original_src'));
+					$(image).width(300);
+					$(image).height(300);
+					$(image).css('padding', '0px');
+					$(image).replaceWith(custom_neopet_view);
+				}
+			}
+		}
+	});
 }
