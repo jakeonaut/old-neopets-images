@@ -2,6 +2,7 @@ console.log("neopetsNewToOld");
 
 oldNeopetsChrome.ChangeAllImages = function(image){
 	oldNeopetsChrome.RainbowPoolScript();
+	oldNeopetsChrome.AdoptPageScript();
 	if (oldNeopetsChrome.disable_pet_customization){
 		oldNeopetsChrome.QuickRefCustomizationScript();
 		oldNeopetsChrome.PetLookupScript();
@@ -20,11 +21,11 @@ oldNeopetsChrome.ChangeAllImages = function(image){
 			});
 		}
 		//Exchange all img with a species/color/gender id
-		if (image.attr('src').indexOf("pets.neopets.com/cp/") >= 0){
+		if (image.attr('src').indexOf("pets.neopets.com/cp/") >= 0 && image.attr('already_changed') === undefined){
 			oldNeopetsChrome.ChangeImageByID(image);
 		}
 		//Exchange all img with the actual pet name in the url
-		else if (image.attr('src').indexOf("pets.neopets.com/cpn/") >= 0){
+		else if (image.attr('src').indexOf("pets.neopets.com/cpn/") >= 0 && image.attr('already_changed') === undefined){
 			//make an ajax call to find out the redirected img src
 			$.ajax({
 				type: "GET",
@@ -35,14 +36,20 @@ oldNeopetsChrome.ChangeAllImages = function(image){
 				//change img tag's src to be the redirected img src
 				//and proceed as usual
 				success: function(final_url){
+					final_url = "http://pets.neopets.com" + final_url;
 					$(this.local_image).attr('src', final_url);
 					oldNeopetsChrome.ChangeImageByID(this.local_image);
+					$(this.local_image)[0].onerror = function(){
+						this.onerror = "";
+						$(this).attr('src', $(this).attr('original_src'));
+					}
 				}
 			});
 		}
 		//For quickref toggle images, the pet image is set as the background image, not the src :(
-		else if (image.css('background-image').indexOf('pets.neopets.com/cp/') >= 0){
+		else if (image.css('background-image').indexOf('pets.neopets.com/cp/') >= 0 && image.attr('already_changed') === undefined){
 			var bg_img_url = $(image).css("background-image");
+			$(image).attr('original_src', bg_img_url);
 			if (bg_img_url.indexOf("url('") >= 0)
 				bg_img_url = bg_img_url.substring(5, bg_img_url.length-2);
 			$(image).attr('src', bg_img_url);
@@ -50,6 +57,11 @@ oldNeopetsChrome.ChangeAllImages = function(image){
 			$(image).css('background-image', "url('"+$(image).attr('src')+"')");
 			$(image).css('background-size', $(image).width()+"px "+$(image).height()+"px");
 			$(image).attr('src', $(image).attr('original_src'));
+			$(image)[0].onerror = function(){
+				this.onerror = "";
+				$(this).css('background-image', $(this).attr('original_src'));
+				$(this).css('background-size', '');
+			}
 		}
 	}
 }
@@ -85,6 +97,8 @@ oldNeopetsChrome.ChangeImage = function(image, new_img_id, old_img_postfix){
 }
 
 oldNeopetsChrome.RainbowPoolScript = function(){
+	var url = window.location.href;
+	if (url.indexOf("www.neopets.com/pool") < 0) return;
 	try{		
 		set_pet_img = function(url, color_name) {
 			var pet_img = document.getElementById('rp_pet_img');
@@ -109,6 +123,7 @@ oldNeopetsChrome.RainbowPoolScript = function(){
 		$("#rp_pet_img").attr('original_src', $('#rp_pet_img').attr('src'));
 		set_pet_img($('#rp_pet_img').attr('src'), $("#rp_pet_title").html().toLowerCase());
 	}catch(err){
+		console.log(err);
 	}
 }
 
@@ -167,6 +182,7 @@ oldNeopetsChrome.PetLookupScript = function(){
 		//change img tag's src to be the redirected img src
 		//and proceed as usual
 		success: function(final_url){
+			final_url = "http://pets.neopets.com" + final_url;
 			$(this.local_image).attr('src', final_url);
 			if (oldNeopetsChrome.ChangeImageByID(image)){
 				$(image).width(200);

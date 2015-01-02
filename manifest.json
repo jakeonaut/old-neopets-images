@@ -23,6 +23,7 @@
   "web_accessible_resources": [ "src/jquery.js",
 								"src/neopetsInit.js",
 								"src/neopetsCollection.js",
+								"src/neopetsAdoption.js",
 								"src/neopetsNewToOld.js",
 								"src/neopetsMisc.js",
 								"src/neopetsMain.js"],
