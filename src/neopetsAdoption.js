@@ -19,6 +19,10 @@ oldNeopetsChrome.AdoptPageScript = function(){
 					document.getElementById('pet'+i+'_stats_div').style.backgroundColor = '#ffffff';
 					document.getElementById('pet'+i+'_img').src = pet_arr[i].sadImg.src;
 					document.getElementById('pet'+i+'_name').style.color = 'black';
+					document.getElementById('pet'+i+'_name').style.textDecoration = 'none';
+					document.getElementById('pet'+i+'_name').style.cursor = 'default';
+					//remove name click listener
+					document.getElementById('pet'+i+'_name').onclick = function(){};
 					//we have not yet tried to calculate the images
 					if ($("#pet"+i+"_img").attr('original_sad_src') === undefined){
 						$("#pet"+i+"_img").attr('already_changed', true);
@@ -53,6 +57,13 @@ oldNeopetsChrome.AdoptPageScript = function(){
 			document.getElementById('pet'+id+'_stats_div').style.backgroundColor = '#efefef';
 			document.getElementById('pet'+id+'_img').src = pet_arr[id].happyImg.src;
 			document.getElementById('pet'+id+'_name').style.color = 'green';
+			document.getElementById('pet'+id+'_name').style.textDecoration = 'underline';
+			document.getElementById('pet'+id+'_name').style.cursor = 'pointer';
+			var pet_name = $("#pet"+id+"_name").html();
+			//add click event to open up pet lookup in new tab
+			document.getElementById('pet'+id+'_name').onclick = function(){
+				window.open('http://www.neopets.com/petlookup.phtml?pet='+pet_name,'_blank');
+			};
 			//we have not yet tried to calculate the images
 			if ($("#pet"+id+"_img").attr('original_happy_src') === undefined){
 				$("#pet"+i+"_img").attr('already_changed', true);
