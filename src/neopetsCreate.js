@@ -66,7 +66,7 @@ oldNeopetsChrome.CreateNeopetScript = function(){
 			species=species_arr[i].toLowerCase();
 		if (species==selected_pet){
 				// grey highlight 50x50 pet 
-				if ($("#"+selected_pet).attr('dont_change')){
+				if ($("#"+selected_pet).attr('dont_change') === true){
 					document.getElementById(selected_pet).style.backgroundImage='url('+img_grey_arr[i].src+')';
 				}else{
 					$("#"+selected_pet).css("opacity", "1");
@@ -81,7 +81,7 @@ oldNeopetsChrome.CreateNeopetScript = function(){
 				}
 			}else if (species==prev_selected_pet){
 				// 50x50 line pet
-				if ($("#"+species).attr('dont_change')){
+				if ($("#"+species).attr('dont_change') === true){
 					document.getElementById(species).style.backgroundImage="url("+img_line_arr[i].src+")";
 				}else{
 					$("#"+species).css("opacity", "0.5");
@@ -156,7 +156,7 @@ oldNeopetsChrome.CreateNeopetScript = function(){
 		img_arr=img_selected_yellow_arr;
 		}
 
-		if ($(image).attr('dont_use') === undefined || $(image).attr('dont_use')){
+		if ($(image).attr('dont_use') === undefined || $(image).attr('dont_use') === true){
 			for(var i=0;i<species_arr.length;i++){
 				if (species_arr[i].toLowerCase()==selected_pet.toLowerCase()){
 
@@ -173,9 +173,12 @@ oldNeopetsChrome.CreateNeopetScript = function(){
 		//also try to change the thumbnail images
 		for (var i = 0; i < $('.pet_thumb').length; i++){
 			var thumb = $($('.pet_thumb')[i]);
-			if ($(thumb).attr('dont_change')) continue;
+			if ($(thumb).attr('dont_change') === true) continue;
 			var pet_species = $(thumb).attr('id');
 			$(thumb).css('background-image', "url('"+"http://images.neopets.com/pets/"+pet_species+"_"+selected_pet_colour+"_baby.gif"+"')");
 		}
 	}
+	
+	//CLICK
+	imageClick(selected_pet);
 };
