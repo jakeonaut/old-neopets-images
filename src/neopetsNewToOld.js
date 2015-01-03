@@ -3,6 +3,7 @@ console.log("neopetsNewToOld");
 oldNeopetsChrome.ChangeAllImages = function(image){
 	oldNeopetsChrome.RainbowPoolScript();
 	oldNeopetsChrome.AdoptPageScript();
+	oldNeopetsChrome.CreateNeopetScript();
 	if (oldNeopetsChrome.disable_pet_customization){
 		oldNeopetsChrome.QuickRefCustomizationScript();
 		oldNeopetsChrome.PetLookupScript();

@@ -30,7 +30,7 @@ oldNeopetsChrome.AddNavigationLinks = function(){
 			"Altador", oldNeopetsChrome.GetAltador(), "http://www.neopets.com/altador/index.phtml");
 		oldNeopetsChrome.AddNavList(explore_list,
 			"Brightvale", oldNeopetsChrome.GetBrightvale(), "http://www.neopets.com/medieval/brightvale.phtml");
-		oldNeopetsChrome.AddNavList(explore_list,
+		/*oldNeopetsChrome.AddNavList(explore_list,
 			"Faerieland", oldNeopetsChrome.GetFaerieland(), "http://www.neopets.com/faerieland/index.phtml");
 		oldNeopetsChrome.AddNavList(explore_list,
 			"Haunted Woods", oldNeopetsChrome.GetHauntedWoods(), "http://www.neopets.com/halloween/index.phtml");
@@ -63,7 +63,7 @@ oldNeopetsChrome.AddNavigationLinks = function(){
 		oldNeopetsChrome.AddNavList(explore_list,
 			"Tyrannia", oldNeopetsChrome.GetTyrannia(), "http://www.neopets.com/prehistoric/index.phtml");
 		oldNeopetsChrome.AddNavList(explore_list,
-			"Virtupets Space Station", oldNeopetsChrome.GetVirtupetsSpaceStation(), "http://www.neopets.com/space/index.phtml");
+			"Virtupets Space Station", oldNeopetsChrome.GetVirtupetsSpaceStation(), "http://www.neopets.com/space/index.phtml");*/
 		oldNeopetsChrome.AddNavList(explore_list,
 			"Jelly World", oldNeopetsChrome.GetJellyWorld(), "http://www.neopets.com/jelly/");
 	}
@@ -87,6 +87,7 @@ oldNeopetsChrome.AddNavList = function(explore_list, name, array_list, link){
 		$(li).append(a);
 		$(actual_list).append(li);
 	}
+	actual_list.css("list-style-type", "none").css('padding', '0px').css('-webkit-padding-star', '0');
 	
 	actual_list.css('display', 'none');
 	list_container.append(actual_list);
@@ -97,7 +98,13 @@ oldNeopetsChrome.AddNavList = function(explore_list, name, array_list, link){
 				list_container.css("color", "#ffff00");
 			}
 			$(".oldNeopetsChrome_navlist").css("display", "none");
-			actual_list.css('display', 'block');
+			actual_list.css('display', 'block').css('position', 'absolute');
+			actual_list.offset({
+				top: list_container.offset().top-5, 
+				left: list_container.parent().offset().left + list_container.parent().width()+5
+			});
+			actual_list.css('background-color', '#000000').css('color', '#ffffff');
+			actual_list.css('padding', '5px');
 		},
 		//hover outerHeight
 		function(e){
@@ -247,5 +254,15 @@ oldNeopetsChrome.GetAltador = function(){
 }
 
 oldNeopetsChrome.GetBrightvale = function(){
-	return [];
+	return [
+		{name: "Wise Old King", url: "http://www.neopets.com/medieval/wiseking.phtml"},
+		{name: "Wheel of Knowledge", url: "http://www.neopets.com/medieval/knowledge.phtml"},
+		{name: "Royal Potionery", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=83"},
+		{name: "Brightvale Glaziers", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=79"},
+		{name: "The Scrollery", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=78"},
+		{name: "Brightvale Books", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=77"},
+		{name: "Brightvale Armoury", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=80"},
+		{name: "Brightvale Motery", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=82"},
+		{name: "Fruits of Brightvale", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=81"}
+	];
 }
