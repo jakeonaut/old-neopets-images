@@ -49,14 +49,14 @@ oldNeopetsChrome.ChangeAllImages = function(image){
 		//For quickref toggle images, the pet image is set as the background image, not the src :(
 		else if (image.css('background-image').indexOf('pets.neopets.com/cp/') >= 0 && image.attr('already_changed') === undefined){
 			var bg_img_url = $(image).css("background-image");
-			$(image).attr('original_src', bg_img_url);
+			$(image).attr('original_src', $(image).attr('src'));
 			if (bg_img_url.indexOf("url('") >= 0)
 				bg_img_url = bg_img_url.substring(5, bg_img_url.length-2);
-			$(image).attr('src', bg_img_url);
-			oldNeopetsChrome.ChangeImageByID(image);
-			$(image).css('background-image', "url('"+$(image).attr('src')+"')");
+			var bg_image = $(document.createElement('img'));
+			$(bg_image).attr('src', bg_img_url);
+			oldNeopetsChrome.ChangeImageByID(bg_image);
+			$(image).css('background-image', "url('"+$(bg_image).attr('src')+"')");
 			$(image).css('background-size', $(image).width()+"px "+$(image).height()+"px");
-			$(image).attr('src', $(image).attr('original_src'));
 			$(image)[0].onerror = function(){
 				this.onerror = "";
 				$(this).css('background-image', $(this).attr('original_src'));
