@@ -69,7 +69,9 @@ oldNeopetsChrome.AddNavigationLinks = function(){
 	}
 	
 	//this is their suckerfish or something script they call
-	startList();
+	try{
+		startList();
+	}catch(err){}
 }
 
 oldNeopetsChrome.AddNavList = function(explore_list, name, array_list, link){
