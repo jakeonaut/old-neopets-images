@@ -1,5 +1,4 @@
 2. TODO:
-	7. add quickchange active pet on sidebar?
 	1. add option to make nav links open as new tabs by default
 	0. Fix clothing bug below
 		-add an option to override pet customization/clothing
@@ -9,6 +8,7 @@
 		-http://images.neopets.com/maps/explore/explore_2005_02.gif
 		-if anything convert the flash images to html (screenshot the new maps and make image links)
 3. Bug:
+	-the bank gets fucked up; shop wizard beginning too
 	-there are a number of rainbowpool options that don't work correctly but should
 		-Abandoned aishas, bruce, ixi, elephante?
 		-http://www.sunnyneo.com/rainbowpool.php?species=buzz&colour=zombie#info

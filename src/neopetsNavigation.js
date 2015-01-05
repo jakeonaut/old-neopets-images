@@ -13,7 +13,7 @@ oldNeopetsChrome.AddNavigationLinks = function(){
 	var nav_buttons = navigation.children();
 	var explore_list = $($(nav_buttons[3]).children()[1]);
 	
-	if (oldNeopetsChrome.navigation_type === oldNeopetsChrome.NAVIGATION_DAILIES){
+	if (oldNeopetsChrome.NAVIGATION_DAILIES){
 		oldNeopetsChrome.AddNavList(explore_list, 
 			"Freebies", oldNeopetsChrome.GetClassicDailies());
 		oldNeopetsChrome.AddNavList(explore_list,
@@ -25,7 +25,7 @@ oldNeopetsChrome.AddNavigationLinks = function(){
 		oldNeopetsChrome.AddNavList(explore_list,
 			"Quests", oldNeopetsChrome.GetQuests());
 	}
-	else if (oldNeopetsChrome.navigation_type === oldNeopetsChrome.NAVIGATION_WORLDS){
+	if (oldNeopetsChrome.NAVIGATION_WORLDS){
 		oldNeopetsChrome.AddNavList(explore_list,
 			"Altador", oldNeopetsChrome.GetAltador(), "http://www.neopets.com/altador/index.phtml");
 		oldNeopetsChrome.AddNavList(explore_list,
@@ -66,6 +66,9 @@ oldNeopetsChrome.AddNavigationLinks = function(){
 			"Virtupets Space Station", oldNeopetsChrome.GetVirtupetsSpaceStation(), "http://www.neopets.com/space/index.phtml");*/
 		oldNeopetsChrome.AddNavList(explore_list,
 			"Jelly World", oldNeopetsChrome.GetJellyWorld(), "http://www.neopets.com/jelly/");
+	}
+	if (oldNeopetsChrome.NAVIGATION_CUSTOM){
+		
 	}
 	
 	//this is their suckerfish or something script they call

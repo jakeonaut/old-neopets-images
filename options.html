@@ -1,39 +1,55 @@
 <!DOCTYPE html>
 <head><title>Old Neopets Images Options</title></head>
 <body>
+	<h1>Old Neopets Images Extension Options</h1>
 	<label>
 		<input type="checkbox" id="change_new_images_to_old">
 		Change to Old Neopets Images
 	</label>
-	
+	<br/><br/>
 	<label>
 		<input type="checkbox" id="disable_pet_customization">
 		Disable Pet Customization
 	</label>
-	
+	<br/><br/>
 	<label>
 		<input type="checkbox" id="add_navigation_links">
 		Add Navigation Links
 		<br/>
-		<input type="checkbox" id="NAVIGATION_DAILIES" style="padding-left: 5px;"> Dailies List
-		<input type="checkbox" id="NAVIGATION_WORLDS" style="padding-left: 5px;"> Map World Locations
-		<input type="checkbox" id="NAVIGATION_CUSTOM" style="padding-left: 5px;"> Custom
-		<textarea id="custom_navigation_links" style="padding-left: 10px;">
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" id="NAVIGATION_DAILIES"> Dailies List<br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" id="NAVIGATION_WORLDS"> Map World Locations<br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" id="NAVIGATION_CUSTOM"> Custom<br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" value="Add Link" id="add_custom_nav_link"><br/><br/>
+		<div id="custom_nav_links">
+			<div class="custom_nav_link">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="nav_name"> <input type="text" class="nav_url"> 
+			</div>
+		</div>
 	</label>
-	
+	<br/><br/>
 	<label>
 		<input type="checkbox" id="remove_bottom_image">
 		Remove Random Footer Image
 	</label>
-	
+	<br/><br/>
 	<label>
 		<input type="checkbox" id="add_neofriend_name_links">
 		Change Names to Links in Neofriends List
 	</label>
-	
+	<br/><br/>
 	<label>
 		<input type="checkbox" id="add_quickref_to_sidebar">
 		Add Small Quickref to Sidebar
 	</label>
+	
+	<br/><br/>
+	<button id="save">Save Options</button>
+	<div id="status"></div>
+	
+	<script src="options.js"></script>
 </body>
 </html>

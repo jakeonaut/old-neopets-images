@@ -42,7 +42,7 @@ oldNeopetsChrome.AddQuickrefToSidebar = function(){
 	$("<link/>", {
 	   rel: "stylesheet",
 	   type: "text/css",
-	   href: "http://images.neopets.com/css/quickref.css"
+	   href: "http://cakeandturtles.nfshost.com/quickref.css"
 	}).appendTo("head");
 	$.getScript("http://images.neopets.com/js/quickref.js", {});
 	
@@ -50,7 +50,8 @@ oldNeopetsChrome.AddQuickrefToSidebar = function(){
 	
 	$(container).load("http://www.neopets.com/quickref.phtml #nav", function(){
 		$(container).append($("#nav"));
-		oldNeopetsChrome.ChangeAllImages();
+		if (oldNeopetsChrome.change_new_images_to_old)
+			oldNeopetsChrome.ChangeAllImages();
 		
 		$(loading_image).remove();
 		$(".active_pet").css("float", "left").css("padding", "0px");
