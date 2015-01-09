@@ -32,7 +32,7 @@ oldNeopetsChrome.AddNavigationLinks = function(){
 			"Brightvale", oldNeopetsChrome.GetBrightvale(), "http://www.neopets.com/medieval/brightvale.phtml");
 		oldNeopetsChrome.AddNavList(explore_list,
 			"Faerieland", oldNeopetsChrome.GetFaerieland(), "http://www.neopets.com/faerieland/index.phtml");
-		/*oldNeopetsChrome.AddNavList(explore_list,
+		oldNeopetsChrome.AddNavList(explore_list,
 			"Haunted Woods", oldNeopetsChrome.GetHauntedWoods(), "http://www.neopets.com/halloween/index.phtml");
 		oldNeopetsChrome.AddNavList(explore_list,
 			"Kiko Lake", oldNeopetsChrome.GetKikoLake(), "http://www.neopets.com/worlds/index_kikolake.phtml");
@@ -63,7 +63,9 @@ oldNeopetsChrome.AddNavigationLinks = function(){
 		oldNeopetsChrome.AddNavList(explore_list,
 			"Tyrannia", oldNeopetsChrome.GetTyrannia(), "http://www.neopets.com/prehistoric/index.phtml");
 		oldNeopetsChrome.AddNavList(explore_list,
-			"Virtupets Space Station", oldNeopetsChrome.GetVirtupetsSpaceStation(), "http://www.neopets.com/space/index.phtml");*/
+			"Virtupets Space Station", oldNeopetsChrome.GetVirtupetsSpaceStation(), "http://www.neopets.com/space/index.phtml");
+		oldNeopetsChrome.AddNavList(explore_list,
+			"Deep Catacombs", oldNeopetsChrome.GetDeepCatacombs(), "http://www.neopets.com/art/index.phtml");
 		oldNeopetsChrome.AddNavList(explore_list,
 			"Jelly World", oldNeopetsChrome.GetJellyWorld(), "http://www.neopets.com/jelly/");
 	}
@@ -348,13 +350,27 @@ oldNeopetsChrome.GetHauntedWoods = function(){
 
 oldNeopetsChrome.GetKikoLake = function(){
 	return [
-		{name: "", url: ""},
+		{name: "Glass Bottom Boat Tours", url: "http://www.neopets.com/worlds/kiko/glass_boat.phtml"},
+		{name: "Kiko Lake Carpentry", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=67"},
+		{name: "Kiko Pop", url: "http://www.neopets.com/worlds/kiko/kpop/"},
+		{name: "Kiko Lake Treats", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=66"},
+		{name: "Colouring Pages", url: "http://www.neopets.com/worlds/kiko/colouring_page.phtml"},
 	];
 };
 
 oldNeopetsChrome.GetKrawkIsland = function(){
 	return [
-		{name: "", url: ""},
+		{name: "Forgotten Shore", url: "http://www.neopets.com/pirates/forgottenshore.phtml"},
+		{name: "Keep Out!", url: ""},
+		{name: "Smuggler's Cove", url: ""},
+		{name: "The Academy", url: ""},
+		{name: "The Golden Dubloon", url: ""},
+		{name: "Dubloon-O-Matic", url: ""},
+		{name: "Governor's Mansion", url: ""},
+		{name: "Warf Wharf", url: ""},
+		{name: "Buried Treasure", url: ""},
+		{name: "Armada", url: ""},
+		{name: "Forgotten Shore", url: ""}
 	];
 };
 
@@ -431,6 +447,12 @@ oldNeopetsChrome.GetTyrannia = function(){
 };
 
 oldNeopetsChrome.GetVirtupetsSpaceStation = function(){
+	return [
+		{name: "", url: ""},
+	];
+};
+
+oldNeopetsChrome.GetDeepCatacombs = function(){
 	return [
 		{name: "", url: ""},
 	];
