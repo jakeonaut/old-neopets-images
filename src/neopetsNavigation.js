@@ -30,9 +30,9 @@ oldNeopetsChrome.AddNavigationLinks = function(){
 			"Altador", oldNeopetsChrome.GetAltador(), "http://www.neopets.com/altador/index.phtml");
 		oldNeopetsChrome.AddNavList(explore_list,
 			"Brightvale", oldNeopetsChrome.GetBrightvale(), "http://www.neopets.com/medieval/brightvale.phtml");
-		/*oldNeopetsChrome.AddNavList(explore_list,
-			"Faerieland", oldNeopetsChrome.GetFaerieland(), "http://www.neopets.com/faerieland/index.phtml");
 		oldNeopetsChrome.AddNavList(explore_list,
+			"Faerieland", oldNeopetsChrome.GetFaerieland(), "http://www.neopets.com/faerieland/index.phtml");
+		/*oldNeopetsChrome.AddNavList(explore_list,
 			"Haunted Woods", oldNeopetsChrome.GetHauntedWoods(), "http://www.neopets.com/halloween/index.phtml");
 		oldNeopetsChrome.AddNavList(explore_list,
 			"Kiko Lake", oldNeopetsChrome.GetKikoLake(), "http://www.neopets.com/worlds/index_kikolake.phtml");
@@ -68,14 +68,15 @@ oldNeopetsChrome.AddNavigationLinks = function(){
 			"Jelly World", oldNeopetsChrome.GetJellyWorld(), "http://www.neopets.com/jelly/");
 	}
 	if (oldNeopetsChrome.NAVIGATION_CUSTOM){
-		
+		oldNeopetsChrome.AddNavList(explore_list,
+			"Custom Links", oldNeopetsChrome.custom_navigation_links);
 	}
 	
 	//this is their suckerfish or something script they call
 	try{
 		startList();
 	}catch(err){}
-}
+};
 
 oldNeopetsChrome.AddNavList = function(explore_list, name, array_list, link){
 	var list_container = $(document.createElement('li'));
@@ -89,7 +90,21 @@ oldNeopetsChrome.AddNavList = function(explore_list, name, array_list, link){
 		var a = $(document.createElement('a'));
 		$(a).html("» "+array_list[i].name);
 		$(a).attr('href', array_list[i].url);
+		
 		$(li).append(a);
+		if (array_list[i].links !== undefined){
+			var ul = document.createElement("ul");
+			for (var j = 0; j < array_list[i].links.length; j++){
+				var ulli = $(document.createElement('li'));
+				var a = $(document.createElement('a'));
+				$(a).html("» "+array_list[i].links[j].name);
+				$(a).attr('href', array_list[i].links[j].url);
+				
+				$(ulli).append(a);
+				$(ul).append(ulli);
+			}
+			$(li).append(ul);
+		}
 		$(actual_list).append(li);
 	}
 	actual_list.css("list-style-type", "none").css('padding', '0px').css('-webkit-padding-star', '0');
@@ -124,7 +139,7 @@ oldNeopetsChrome.AddNavList = function(explore_list, name, array_list, link){
 		});
 	}
 	$(explore_list).append(list_container);
-}
+};
 
 oldNeopetsChrome.GetClassicDailies = function(){
 	return [
@@ -150,7 +165,7 @@ oldNeopetsChrome.GetClassicDailies = function(){
 		{name: "The Coincidence", url: "http://www.neopets.com/magma/portal/ship.phtml"},
 		{name: "Kiko Pop", url: "http://www.neopets.com/worlds/kiko/kpop/"}
 	];
-}
+};
 
 oldNeopetsChrome.GetWheelScratchcards = function(){
 	return [
@@ -165,7 +180,7 @@ oldNeopetsChrome.GetWheelScratchcards = function(){
 		{name: "Spooky Scratchcards", url: "http://www.neopets.com/halloween/scratch.phtml"},
 		{name: "Desert Scratchcards", url: "http://www.neopets.com/desert/sc/kiosk.phtml"}
 	];
-}
+};
 
 oldNeopetsChrome.GetDailyChanceGames = function(){
 	return [
@@ -188,7 +203,7 @@ oldNeopetsChrome.GetDailyChanceGames = function(){
 		{name: "Forgotten Shore", url: "http://www.neopets.com/pirates/forgottenshore.phtml"},
 		{name: "Healing Springs", url: "http://www.neopets.com/faerieland/springs.phtml"}		
 	];
-}
+};
 
 oldNeopetsChrome.GetPaidChanceGames = function(){
 	return [
@@ -217,7 +232,7 @@ oldNeopetsChrome.GetPaidChanceGames = function(){
 		{name: "Faerie Caverns", url: "http://www.neopets.com/faerieland/caverns/index.phtml"},
 		{name: "Scorchy Slots", url: "http://www.neopets.com/games/slots.phtml"}
 	];
-}
+};
 
 oldNeopetsChrome.GetQuests = function(){
 	return [
@@ -230,7 +245,7 @@ oldNeopetsChrome.GetQuests = function(){
 		{name: "Edna's Quest", url: "http://www.neopets.com/halloween/witchtower.phtml"},
 		{name: "Faerie Quest", url: "http://www.neopets.com/quests.phtml"}
 	];
-}
+};
 
 //LOCATION LINKS
 oldNeopetsChrome.GetJellyWorld = function(){
@@ -242,7 +257,7 @@ oldNeopetsChrome.GetJellyWorld = function(){
 		{name: "Jelly Foods", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=62"},
 		{name: "Colouring Pages", url: "http://www.neopets.com/jelly/colouring_page.phtml"}
 	];
-}
+};
 
 oldNeopetsChrome.GetAltador = function(){
 	return [
@@ -256,7 +271,7 @@ oldNeopetsChrome.GetAltador = function(){
 		{name: "The Altadorian Docks", url: "http://www.neopets.com/altador/docks.phtml"},
 		{name: "The Restive Tomb", url: "http://www.neopets.com/altador/tomb.phtml"}
 	];
-}
+};
 
 oldNeopetsChrome.GetBrightvale = function(){
 	return [
@@ -270,4 +285,153 @@ oldNeopetsChrome.GetBrightvale = function(){
 		{name: "Brightvale Motery", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=82"},
 		{name: "Fruits of Brightvale", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=81"}
 	];
-}
+};
+
+oldNeopetsChrome.GetFaerieland = function(){
+	return [
+		{name: "Faerie City", url: "http://www.neopets.com/faerieland/faeriecity.phtml", links: [
+			{name: "The Hidden Tower", url: "http://www.neopets.com/faerieland/hiddentower938.phtml"},
+			{name: "Faerieland Employment Agency", url: "http://www.neopets.com/faerieland/employ/employment.phtml"},
+			{name: "Faerie Quests", url: "http://www.neopets.com/quests.phtml"},
+			{name: "Faerie Bubbles", url: "http://www.neopets.com/games/game.phtml?game_id=358"},
+			{name: "Faerie Petpets", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=40"},
+			{name: "Faerie Weapon Shop", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=93"},
+			{name: "Colouring Pages", url: "http://www.neopets.com/faerieland/faerie_colour.phtml"},
+			{name: "Faerie Paint Brushes", url: "http://www.neopets.com/faerieland/brushes.phtml"},
+			{name: "Faerie Foods", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=39"},
+			{name: "Faerie Furniture", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=75"},
+			{name: "Faerieland Bookshop", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=38"},
+			{name: "Personality Quiz", url: "http://www.neopets.com/faerieland/personality.phtml"}
+		]},
+		{name: "Jhudora's Bluff", url: "http://www.neopets.com/faerieland/darkfaerie.phtml"},
+		{name: "Faerie Caverns", url: "http://www.neopets.com/faerieland/caverns/index.phtml"},
+		{name: "Poogle Races", url: "http://www.neopets.com/faerieland/poogleracing.phtml"},
+		{name: "Wheel of Excitement", url: "http://www.neopets.com/faerieland/wheel.phtml"},
+		{name: "Healing Springs", url: "http://www.neopets.com/faerieland/springs.phtml"},
+		{name: "Rainbow Fountain", url: "http://www.neopets.com/faerieland/rainbowfountain.phtml"},
+	];
+};
+
+oldNeopetsChrome.GetHauntedWoods = function(){
+	return [	
+		{name: "Deserted Fairground", url: "http://www.neopets.com/halloween/index_fair.phtml", links: [
+			{name: "Castle Nox", url: "http://www.neopets.com/halloween/fortnox.phtml"},
+			{name: "Wheel of Misfortune", url: "http://www.neopets.com/halloween/wheel/index.phtml"},
+			{name: "Test Your Strength", url: "http://www.neopets.com/halloween/strtest/index.phtml"},
+			{name: "Carnival of Terror", url: "http://www.neopets.com/games/game.phtml?game_id=902"},
+			{name: "Coconut Shy", url: "http://www.neopets.com/halloween/coconutshy.phtml"},
+			{name: "Scratchcards", url: "http://www.neopets.com/halloween/scratch.phtml"},
+			{name: "Spooky Food", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=30"},
+			{name: "Bagatelle", url: "http://www.neopets.com/halloween/bagatelle.phtml"},
+			{name: "Cork Gun Gallery", url: "http://www.neopets.com/halloween/corkgun.phtml"},
+			{name: "Haunted Weaponry", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=59"},
+			{name: "Spooky Furniture", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=60"},
+			{name: "Ghost Neopets", url: "http://www.neopets.com/halloween/ghostpets.phtml"}
+		]},
+		{name: "Haunted Marketplace", url: "http://www.neopets.com/halloween/hall_market.phtml"},
+		{name: "Brain Tree", url: "http://www.neopets.com/halloween/braintree.phtml"},
+		{name: "Stone Dome", url: "http://www.neopets.com/dome/index.phtml?&rndno=398"},
+		{name: "Gypsy Camp", url: "http://www.neopets.com/halloween/hwp/gypsy_camp.phtml"},
+		{name: "Fetch!", url: "http://www.neopets.com/games/maze/maze.phtml"},
+		{name: "Spooky Petpets", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=31"},
+		{name: "Castle of Eliv Thade", url: "http://www.neopets.com/games/game.phtml?game_id=230"},
+		{name: "Halloween Paint Brushes", url: "http://www.neopets.com/halloween/costumes.phtml"},
+		{name: "Edna's Tower", url: "http://www.neopets.com/halloween/witchtower.phtml"},
+		{name: "MAGAX: Destroyer II", url: "http://www.neopets.com/games/game.phtml?game_id=763"},
+		{name: "Colouring Pages", url: "http://www.neopets.com/halloween/colouring_page.phtml"},
+		{name: "Esophagor", url: "http://www.neopets.com/halloween/esophagor.phtml"},
+		{name: "Game Graveyard", url: "http://www.neopets.com/halloween/gamegraveyard.phtml"},
+		{name: "Haunted House", url: "http://www.neopets.com/halloween/haunted_house.phtml"},
+		{name: "Neopet Masks", url: "http://www.neopets.com/halloween/spet_masks.phtml"}
+	];
+};
+
+oldNeopetsChrome.GetKikoLake = function(){
+	return [
+		{name: "", url: ""},
+	];
+};
+
+oldNeopetsChrome.GetKrawkIsland = function(){
+	return [
+		{name: "", url: ""},
+	];
+};
+
+oldNeopetsChrome.GetKreludor = function(){
+	return [
+		{name: "", url: ""},
+	];
+};
+
+oldNeopetsChrome.GetLutari = function(){
+	return [
+		{name: "", url: ""},
+	];
+};
+
+oldNeopetsChrome.GetMaraqua = function(){
+	return [
+		{name: "", url: ""},
+	];
+};
+
+oldNeopetsChrome.GetMeridell = function(){
+	return [
+		{name: "", url: ""},
+	];
+};
+
+oldNeopetsChrome.GetMoltara = function(){
+	return [
+		{name: "", url: ""},
+	];
+};
+
+oldNeopetsChrome.GetMysteryIsland = function(){
+	return [
+		{name: "", url: ""},
+	];
+};
+
+oldNeopetsChrome.GetNeopiaCentral = function(){
+	return [
+		{name: "", url: ""},
+	];
+};
+
+oldNeopetsChrome.GetRooIsland = function(){
+	return [
+		{name: "", url: ""},
+	];
+};
+
+oldNeopetsChrome.GetShenkuu = function(){
+	return [
+		{name: "", url: ""},
+	];
+};
+
+oldNeopetsChrome.GetTerrorMountain = function(){
+	return [
+		{name: "", url: ""},
+	];
+};
+
+oldNeopetsChrome.GetTheLostDesert = function(){
+	return [
+		{name: "", url: ""},
+	];
+};
+
+oldNeopetsChrome.GetTyrannia = function(){
+	return [
+		{name: "", url: ""},
+	];
+};
+
+oldNeopetsChrome.GetVirtupetsSpaceStation = function(){
+	return [
+		{name: "", url: ""},
+	];
+};

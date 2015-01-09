@@ -12,7 +12,7 @@ function save_options(){
 	var all = document.getElementsByTagName("*");
 	var nav_link = {name: '', url: ''};
 	for (var i = 0; i < all.length; i++){
-		if (all[i].className === "nav_name"){
+		if (all[i].className === "nav_name" && all[i].value.length > 0){
 			nav_link.name = all[i].value;
 		}else if (all[i].className === "nav_url"){
 			nav_link.url = all[i].value;
@@ -80,7 +80,9 @@ function restore_options(){
 			var name = document.createElement('input');
 			name.type="text";
 			name.className="nav_name";
+			console.log(items.custom_navigation_links[i].name);
 			name.value = items.custom_navigation_links[i].name;
+			console.log(name.value);
 			
 			var url = document.createElement('input');
 			url.type='text';
@@ -93,7 +95,7 @@ function restore_options(){
 			
 			div.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: ";
 			div.appendChild(name);
-			div.innerHTML += "&nbsp;&nbsp;url: ";
+			div.appendChild(document.createTextNode("  url: "));
 			div.appendChild(url);
 			div.appendChild(remove);
 			remove.addEventListener("click", function(event){

@@ -35,6 +35,7 @@ var loadVariables = function(callback){
 		}
 		script += "];\n";
 		script += "oldNeopetsChrome.add_neofriend_name_links = " + items.add_neofriend_name_links + ";\n";
+		script += "oldNeopetsChrome.remove_bottom_image = " + items.remove_bottom_image + ";\n";
 		script += "oldNeopetsChrome.add_quickref_to_sidebar = " + items.add_quickref_to_sidebar + ";\n";
 		
 		var script_tag = document.createElement('script');

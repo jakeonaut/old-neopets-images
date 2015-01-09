@@ -33,5 +33,9 @@
   "permissions": [
 	"storage",
 	"http://*/"
-  ]
+  ],
+  "browser_action": {
+    "default_icon": "icons/icon128.png",
+    "default_popup": "options.html"
+  }
 }
