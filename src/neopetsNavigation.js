@@ -65,8 +65,6 @@ oldNeopetsChrome.AddNavigationLinks = function(){
 		oldNeopetsChrome.AddNavList(explore_list,
 			"Virtupets Space Station", oldNeopetsChrome.GetVirtupetsSpaceStation(), "http://www.neopets.com/space/index.phtml");
 		oldNeopetsChrome.AddNavList(explore_list,
-			"Deep Catacombs", oldNeopetsChrome.GetDeepCatacombs(), "http://www.neopets.com/art/index.phtml");
-		oldNeopetsChrome.AddNavList(explore_list,
 			"Jelly World", oldNeopetsChrome.GetJellyWorld(), "http://www.neopets.com/jelly/");
 	}
 	if (oldNeopetsChrome.NAVIGATION_CUSTOM){
@@ -80,68 +78,67 @@ oldNeopetsChrome.AddNavigationLinks = function(){
 	}catch(err){}
 };
 
-oldNeopetsChrome.AddNavList = function(explore_list, name, array_list, link){
+oldNeopetsChrome.AddNavList = function(parent_list, name, child_list, link){
+	oldNeopetsChrome.AddNavListRecursive(parent_list, name, child_list, link, 1);
+}
+
+oldNeopetsChrome.AddNavListRecursive = function(parent_list, name, child_list, link, depth){
 	var list_container = $(document.createElement('li'));
-	list_container.html("» "+name);
-	list_container.disableSelection();
-	var actual_list = $(document.createElement('ul'));
-	//actual_list.disableSelection();
-	actual_list.addClass("oldNeopetsChrome_navlist");
-	for (var i = 0; i < array_list.length; i++){
-		var li = $(document.createElement('li'));
-		var a = $(document.createElement('a'));
-		$(a).html("» "+array_list[i].name);
-		$(a).attr('href', array_list[i].url);
-		
-		$(li).append(a);
-		if (array_list[i].links !== undefined){
-			var ul = document.createElement("ul");
-			for (var j = 0; j < array_list[i].links.length; j++){
-				var ulli = $(document.createElement('li'));
-				var a = $(document.createElement('a'));
-				$(a).html("» "+array_list[i].links[j].name);
-				$(a).attr('href', array_list[i].links[j].url);
-				
-				$(ulli).append(a);
-				$(ul).append(ulli);
-			}
-			$(li).append(ul);
-		}
-		$(actual_list).append(li);
-	}
-	actual_list.css("list-style-type", "none").css('padding', '0px').css('-webkit-padding-star', '0');
+	var a = $(document.createElement('a'));
+	a.html("» "+name);
+	if (link === undefined) link = "#";
+	a.attr('href', link);
 	
-	actual_list.css('display', 'none');
-	list_container.append(actual_list);
-	list_container.css("color", "#ffffff").hover(
-		//hover in
-		function(e){
-			if (link !== undefined){
-				list_container.css("color", "#ffff00");
+	list_container.append(a);
+	if (child_list.length > 0){
+		var actual_list = $(document.createElement('ul'));
+		actual_list.addClass("oldNeopetsChrome_navlist");
+		actual_list.addClass("onc_nav_depth_"+depth);
+		for (var i = 0; i < child_list.length; i++){
+			var li = $(document.createElement('li'));
+			if (child_list[i].links !== undefined){
+				oldNeopetsChrome.AddNavListRecursive(actual_list, child_list[i].name, child_list[i].links, child_list[i].url, depth+1);
+			}else{
+				var a = $(document.createElement('a'));
+				$(a).html("» "+child_list[i].name);
+				$(a).attr('href', child_list[i].url);
+				$(li).append(a);
 			}
-			$(".oldNeopetsChrome_navlist").css("display", "none");
-			actual_list.css('display', 'block').css('position', 'absolute');
-			actual_list.offset({
-				top: list_container.offset().top-5, 
-				left: list_container.parent().offset().left + list_container.parent().width()+5
-			});
-			actual_list.css('background-color', '#000000').css('color', '#ffffff');
-			actual_list.css('padding', '5px');
-		},
-		//hover outerHeight
-		function(e){
-			$(".oldNeopetsChrome_navlist").css("display", "none");
-			$(list_container).css('color', '#ffffff');
+			$(actual_list).append(li);
 		}
-	);
-	if (link !== undefined){
-		list_container.css("cursor", "pointer");
-		list_container.click(function(e){
-			window.location.href = link;
-		});
+		
+		actual_list.css("list-style-type", "none").css('padding', '0px').css('-webkit-padding-star', '0');
+		
+		actual_list.css('display', 'none');
+		list_container.append(actual_list);
+		list_container.hover(
+			//hover in
+			function(e){
+				if (link !== undefined){
+					list_container.css("color", "#ffff00");
+				}
+				$(".onc_nav_depth_"+depth).css("display", "none");
+				actual_list.css('display', 'block').css('position', 'absolute');
+				actual_list.offset({
+					top: list_container.offset().top-5, 
+					left: list_container.parent().offset().left + list_container.parent().width()+5
+				});
+				actual_list.css('background-color', '#000000').css('color', '#ffffff');
+				actual_list.css('padding', '5px');
+			},
+			//hover outerHeight
+			function(e){
+				$(".onc_nav_depth_"+depth).css("display", "none");
+				$(list_container).css('color', '#ffffff');
+			}
+		);
 	}
-	$(explore_list).append(list_container);
-};
+	
+	list_container.css("color", "#ffffff");
+	$(parent_list).append(list_container);
+}
+
+/***************************************************/
 
 oldNeopetsChrome.GetClassicDailies = function(){
 	return [
@@ -361,58 +358,209 @@ oldNeopetsChrome.GetKikoLake = function(){
 oldNeopetsChrome.GetKrawkIsland = function(){
 	return [
 		{name: "Forgotten Shore", url: "http://www.neopets.com/pirates/forgottenshore.phtml"},
-		{name: "Keep Out!", url: ""},
-		{name: "Smuggler's Cove", url: ""},
-		{name: "The Academy", url: ""},
-		{name: "The Golden Dubloon", url: ""},
-		{name: "Dubloon-O-Matic", url: ""},
-		{name: "Governor's Mansion", url: ""},
-		{name: "Warf Wharf", url: ""},
-		{name: "Buried Treasure", url: ""},
-		{name: "Armada", url: ""},
-		{name: "Forgotten Shore", url: ""}
+		{name: "Keep Out!", url: "http://www.neopets.com/pirates/keepout.phtml"},
+		{name: "Smuggler's Cove", url: "http://www.neopets.com/pirates/smugglerscove.phtml"},
+		{name: "The Academy", url: "www.neopets.com/pirates/academy.phtml"},
+		{name: "The Golden Dubloon", url: "http://www.neopets.com/pirates/restaurant.phtml"},
+		{name: "Dubloon-O-Matic", url: "http://www.neopets.com/pirates/dubloonomatic.phtml"},
+		{name: "Governor's Mansion", url: "www.neopets.com/pirates/mansion.phtml", links: [
+			{name: "Anchor Management", url: "http://www.neopets.com/pirates/anchormanagement.phtml"}
+		]},
+		{name: "Warf Wharf", url: "http://www.neopets.com/pirates/warfwharf.phtml", links: [
+			{name: "Colouring Pages", url: "http://www.neopets.com/pirates/colouring.phtml"},
+			{name: "Krawps", url: "http://www.neopets.com/pirates/krawps.phtml"},
+			{name: "Krawk Cup", url: "http://www.neopets.com/pirates/championship.phtmls"},
+			{name: "Bilge Dice", url: "http://www.neopets.com/pirates/bilge.phtml"},
+			{name: "Food Club", url: "http://www.neopets.com/pirates/foodclub.phtml"},
+			{name: "Krawk Fashions", url: "http://www.neopets.com/pirates/fashion.phtml"},
+			{name: "Little Nippers", url: "http://www.neopets.com/pirates/piratepets.phtml"}
+		]},
+		{name: "Buried Treasure", url: "http://www.neopets.com/pirates/buriedtreasure/index.phtml"},
+		{name: "Armada", url: "http://www.neopets.com/games/armada/armada.phtml"}
 	];
 };
 
 oldNeopetsChrome.GetKreludor = function(){
 	return [
-		{name: "", url: ""},
+		{name: "Kreludan Mining Corp", url: "http://www.neopets.com/moon/mining.phtml"},
+		{name: "Booktastic Books", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=70"},
+		{name: "Cafe Kreludor", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=72"},
+		{name: "Neocola Machine", url: "http://www.neopets.com/moon/neocola.phtml"},
+		{name: "Kreludan Homes", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=71"},
+		{name: "Colouring Pages", url: "http://www.neopets.com/moon/colour.phtml"},
+		{name: "Kreludor Meteor", url: "http://www.neopets.com/moon/meteor.phtml"}
 	];
 };
 
 oldNeopetsChrome.GetLutari = function(){
-	return [
-		{name: "", url: ""},
-	];
+	return [];
 };
 
 oldNeopetsChrome.GetMaraqua = function(){
 	return [
-		{name: "", url: ""},
+		{name: "Maraquan Ruins", url: "www.neopets.com/water/index_ruins.phtml", links: [
+			{name: "Ye Olde Fishing Vortex", url: "http://www.neopets.com/water/fishing.phtml"},
+			{name: "Colouring Pages", url: "http://www.neopets.com/water/maraqua_colour.phtml"},
+			{name: "Whirlpool", url: "http://www.neopets.com/games/game.phtml?game_id=927"},
+			{name: "Bubbling Pit", url: "http://www.neopets.com/water/bubblingpit.phtml"},
+			{name: "Attack of the Revenge", url: "http://www.neopets.com/games/game.phtml?game_id=527"}
+		]},
+		{name: "Maraquan Battledome Items", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=87"},
+		{name: "Maraquan Petpets", url: "www.neopets.com/objects.phtml?type=shop&obj_type=88"},
+		{name: "Petpet Plunge", url: "http://www.neopets.com/games/game.phtml?game_id=1078"},
+		{name: "Kelp", url: "http://www.neopets.com/water/restaurant.phtml"},
+		{name: "Maraquan Neohomes", url: "http://www.neopets.com/neohome/"},
+		{name: "Collectable Sea Shells", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=86"},
+		{name: "Jubble Bubble", url: "http://www.neopets.com/games/game.phtml?game_id=619"}
 	];
 };
 
 oldNeopetsChrome.GetMeridell = function(){
 	return [
-		{name: "", url: ""},
+		{name: "Meri Acres Farm", url: "http://www.neopets.com/medieval/index_farm.phtml", links: [
+			{name: "Pick Your Own", url: "http://www.neopets.com/medieval/pickyourown_index.phtml"},
+			{name: "Attack of the Slorgs", url: "http://www.neopets.com/games/slorgattack.phtml"},
+			{name: "Extreme Potato Counter", url: "http://www.neopets.com/games/epc.phtml"},
+			{name: "Potato Counter", url: "http://www.neopets.com/medieval/potatocounter.phtml"},
+			{name: "Rubbish Dump", url: "http://www.neopets.com/medieval/rubbishdump.phtml"},
+			{name: "Guess the Weight", url: "http://www.neopets.com/medieval/guessmarrow.phtml"}
+		]},
+		{name: "Meridell Castle", url: "http://www.neopets.com/medieval/index_castle.phtml", links: [
+			{name: "Double or Nothing", url: "http://www.neopets.com/medieval/doubleornothing.phtml"},
+			{name: "Kayla's Potion Shop", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=73"},
+			{name: "Grumpy Old King", url: "http://www.neopets.com/medieval/grumpyking.phtml"},
+			{name: "Invasion of Meridell", url: "http://www.neopets.com/games/iom/index.phtml"},
+			{name: "Escape from Meridell Castle", url: "http://www.neopets.com/games/play.phtml?game_id=197"}
+		]},
+		{name: "Darigan Citadel", url: "http://www.neopets.com/medieval/index_evil.phtml", links: [
+			{name: "Lord Darigan's Chambers", url: "http://www.neopets.com/medieval/dariganschambers.phtml"},
+			{name: "Cell Block", url: "http://www.neopets.com/games/cellblock/cellblock.phtml"},
+			{name: "Petpet Arena", url: "http://www.neopets.com/games/petpet_battle/index.phtml"},
+			{name: "Darigan Toys", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=74"},
+			{name: "Minions of Darigan", url: "http://www.neopets.com/medieval/minions.phtml"},
+			{name: "Darigan Colouring", url: "http://www.neopets.com/medieval/colouring.phtml"}
+		]},
+		{name: "Turmaculus", url: "http://www.neopets.com/medieval/turmaculus.phtml"},
+		{name: "Cheese Roller", url: "http://www.neopets.com/medieval/cheeseroller.phtml"},
+		{name: "Illusen's Glade", url: "http://www.neopets.com/medieval/earthfaerie.phtml"},
+		{name: "Ultimate Bullseye", url: "http://www.neopets.com/games/bullseye.phtml"},
+		{name: "Round Table Poker", url: "http://www.neopets.com/games/draw_poker/round_table_poker.phtml"},
+		{name: "Turdle Racing", url: "http://www.neopets.com/medieval/turdleracing.phtml"},
+		{name: "Ye Olde Food Shoppe", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=56"},
+		{name: "Kiss The Morthog", url: "http://www.neopets.com/medieval/kissthemortog.phtml"},
+		{name: "Ye Olde Petpets", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=57"},
+		{name: "Shape Shifter", url: "http://www.neopets.com/medieval/shapeshifter_index.phtml"}
 	];
 };
 
 oldNeopetsChrome.GetMoltara = function(){
 	return [
-		{name: "", url: ""},
+		{name: "The Caves", url: "", links: [
+			{name: "Dark Cave", url: "http://www.neopets.com/magma/darkcave.phtml"},
+			{name: "The Gilded Page", url: "http://www.neopets.com/magma/magma_colour.phtml"},
+			{name: "The Arcanium", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=114"},
+			{name: "Magma Pool", url: "www.neopets.com/magma/pool.phtml"},
+			{name: "The Petpetorium", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=113"},
+			{name: "Igneot's Cavern", url: "http://www.neopets.com/magma/igneot.phtml"}
+		]},
+		{name: "Tangor's Workshop", url: "http://www.neopets.com/magma/workshop.phtml"},
+		{name: "Town Hall", url: "http://www.neopets.com/magma/townhall.phtml"},
+		{name: "Cave Glider", url: "http://www.neopets.com/games/game.phtml?game_id=1156"},
+		{name: "Lampwych's Lights Fantastic", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=110"},
+		{name: "Tunnel Tumble", url: "http://www.neopets.com/games/game.phtml?game_id=1175"},
+		{name: "Cog's Togs", url: "www.neopets.com/objects.phtml?type=shop&obj_type=111"},
+		{name: "Molten Morsels", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=112"}
 	];
 };
 
 oldNeopetsChrome.GetMysteryIsland = function(){
 	return [
-		{name: "", url: ""},
+		{name: "Lost City of Geraptiku", url: "http://www.neopets.com/worlds/index_geraptiku.phtml", links: [
+			{name: "Deserted Tomb", url: "http://www.neopets.com/worlds/geraptiku/tomb.phtml"},
+			{name: "Petpet Shop", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=89"},
+			{name: "Colouring Pages", url: "http://www.neopets.com/worlds/geraptiku/colouring.phtml"},
+		]},
+		{name: "Island Mystic", url: "http://www.neopets.com/island/mystichut.phtml"},
+		{name: "Cooking Pot", url: "http://www.neopets.com/island/cookingpot.phtml"},
+		{name: "Rock Pool", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=27"},
+		{name: "Trading Post", url: "http://www.neopets.com/island/tradingpost.phtml"},
+		{name: "Techo Mtn", url: "http://www.neopets.com/island/volcano_codestone.phtml"},
+		{name: "Gadgads Game", url: "http://www.neopets.com/games/gadgadsgame.phtml"},
+		{name: "Training School", url: "http://www.neopets.com/island/training.phtml"},
+		{name: "The Beach", url: "http://www.neopets.com/island/beach.phtml"},
+		{name: "Island Arena", url: "http://www.neopets.com/island/abandonedarena.phtml"},
+		{name: "Tiki Tours", url: "http://www.neopets.com/island/tikitours.phtml"},
+		{name: "Haiku Generator", url: "http://www.neopets.com/island/haiku/haiku.phtml"},
+		{name: "Kitchen Quest", url: "http://www.neopets.com/island/kitchen.phtml"},
+		{name: "Island Market", url: "http://www.neopets.com/island/island_market.phtml"},
+		{name: "Tropical Foods", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=20"},
+		{name: "Tombola", url: "http://www.neopets.com/island/tombola.phtml"},
+		{name: "Beach Volleyball", url: "http://www.neopets.com/games/volleyball.phtml"},
+		{name: "Tiki Tack", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=21"},
+		{name: "Harbour", url: "http://www.neopets.com/island/return.phtml"}
 	];
 };
 
 oldNeopetsChrome.GetNeopiaCentral = function(){
 	return [
-		{name: "", url: ""},
+		{name: "Neopian Bazaar", url: "http://www.neopets.com/market_bazaar.phtml", links: [
+			{name: "Petpet Supplies", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=69"},
+			{name: "Zazzle T-shirts", url: "http://www.zazzle.com/neopets"},
+			{name: "Neohome Superstore", url: "http://www.neopets.com/neohome/shop"},
+			{name: "Health Food", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=16"},
+			{name: "Toy Shop", url: "www.neopets.com/objects.phtml?type=shop&obj_type=3"},
+			{name: "Wizards Shop", url: "http://www.neopets.com/tcg/home.phtml?sc9ejf2=33651"},
+			{name: "Grooming Parlour", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=5"},
+			{name: "Chocolate Factory", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=14"},
+			{name: "Defence Magic", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=10"},
+			{name: "Usuki Land", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=48"},
+			{name: "Hubert's Hotdogs", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=46"},
+			{name: "Fresh Smoothies", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=18"},
+			{name: "Uni's Clothing", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=4"},
+			{name: "Gifts Galore", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=17"},
+			{name: "Gardening Supplies", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=12"},
+			{name: "The Bakery", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=15"},
+			{name: "Battle Magic", url: "www.neopets.com/objects.phtml?type=shop&obj_type=9"},
+			{name: "Fine Furniture", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=41"},
+			{name: "Collectable Card Shop", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=8"}
+		]},
+		{name: "Neopian Plaza", url: "http://www.neopets.com/market_plaza.phtml", links: [
+			{name: "Kadoatery", url: "http://www.neopets.com/games/kadoatery/index.phtml"},
+			{name: "Wishing Well", url: "http://www.neopets.com/wishing.phtml"},
+			{name: "Alien Vending Machine", url: "http://www.neopets.com/vending.phtml"},
+			{name: "Plushie Shop", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=98"},
+			{name: "Welcome Center", url: "http://www.neopets.com/petcentral.phtml"},
+			{name: "Hospital", url: "http://www.neopets.com/hospital.phtml"},
+			{name: "Defenders HQ", url: "http://www.neopets.com/games/defenders_choose.phtml"},
+			{name: "Pizzaroo", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=47"},
+			{name: "Second-Hand Shoppe", url: "http://www.neopets.com/thriftshoppe/index.phtml"},
+			{name: "School Supplies", url: "www.neopets.com/objects.phtml?type=shop&obj_type=53"},
+			{name: "Music Shop", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=84"},
+			{name: "The Pound", url: "http://www.neopets.com/pound/"}
+		]},
+		{name: "Art Centre", url: "http://www.neopets.com/art/", links: [
+			{name: "Art Gallery", url: "http://www.neopets.com/art/gallery.phtml"},
+			{name: "How To Draw", url: "http://www.neopets.com/art/drawing.phtml"},
+			{name: "Poetry Contest", url: "http://www.neopets.com/contributions_poems.phtml"},
+			{name: "Coin Shop", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=68"},
+			{name: "Coffee Shop", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=34"},
+			{name: "Neopian Times", url: "http://www.neopets.com/ntimes/index.phtml"},
+			{name: "Story Telling", url: "http://www.neopets.com/art/storytell.phtml"}
+		]},
+		{name: "Auction House", url: "http://www.neopets.com/auctions.phtml"},
+		{name: "Neopian Bank", url: "http://www.neopets.com/bank.phtml"},
+		{name: "Food Shop", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=1"},
+		{name: "Book Shop", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=7"},
+		{name: "General Store", url: "http://www.neopets.com/generalstore.phtml"},
+		{name: "Petpet Shop", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=25"},
+		{name: "Money Tree", url: "http://www.neopets.com/donations.phtml"},
+		{name: "Rainbow Pool", url: "http://www.neopets.com/pool/"},
+		{name: "NC Mall", url: "http://ncmall.neopets.com/mall/shop.phtml?page=&cat="},
+		{name: "Post Office", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=58"},
+		{name: "Neolodge", url: "www.neopets.com/neolodge.phtml"},
+		{name: "Magic Shop", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=2"},
+		{name: "Pharmacy", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=13"},
+		{name: "Movie Central", url: "http://www.neopets.com/moviecentral/index.phtml"}
 	];
 };
 
@@ -447,12 +595,6 @@ oldNeopetsChrome.GetTyrannia = function(){
 };
 
 oldNeopetsChrome.GetVirtupetsSpaceStation = function(){
-	return [
-		{name: "", url: ""},
-	];
-};
-
-oldNeopetsChrome.GetDeepCatacombs = function(){
 	return [
 		{name: "", url: ""},
 	];
