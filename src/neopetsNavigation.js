@@ -666,7 +666,7 @@ oldNeopetsChrome.GetTheLostDesert = function(){
 
 oldNeopetsChrome.GetTyrannia = function(){
 	return [
-		{name: "Plateau", url: "", links: [
+		{name: "Plateau", url: "http://www.neopets.com/prehistoric/plateau.phtml", links: [
 			{name: "Lair of the Beast", url: "www.neopets.com/prehistoric/thebeast.phtml"},
 			{name: "Giant Omelette", url: "http://www.neopets.com/prehistoric/omelette.phtml?rand=11996"},
 			{name: "Wheel of Monotony", url: "http://www.neopets.com/prehistoric/monotony/monotony.phtml"},
@@ -690,20 +690,24 @@ oldNeopetsChrome.GetTyrannia = function(){
 
 oldNeopetsChrome.GetVirtupetsSpaceStation = function(){
 	return [
-		{name: "Recreation Deck", url: "", links: [
-			{name: "Gormball", url: ""},
-			{name: "Splat-a-Sloth", url: ""},
-			{name: "Space Battledome Arena", url: ""},
-			{name: "Evil Fuzzles From Beyond The Stars", url: ""},
+		{name: "Recreation Deck", url: "http://www.neopets.com/space/recreation.phtml", links: [
+			{name: "Gormball", url: "http://www.neopets.com/space/gormball.phtml"},
+			{name: "Splat-a-Sloth", url: "http://www.neopets.com/games/game.phtml?game_id=81"},
+			{name: "Space Battledome Arena", url: "www.neopets.com/dome/index.phtml?battle_location=4"},
+			{name: "Evil Fuzzles From Beyond The Stars", url: "http://www.neopets.com/games/game.phtml?game_id=585"},
+			{name: "Spell or Starve", url: "www.neopets.com/games/game.phtml?game_id=202"},
+			{name: "Grundo's Cafe", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=22"}
 		]},
-		{name: "Hangar", url: "", links: [
-			{name: "", url: ""},
+		{name: "Hangar", url: "http://www.neopets.com/space/hangar.phtml", links: [
+			{name: "The Return of the Return of Dr. Sloth", url: "www.neopets.com/games/game.phtml?game_id=480"},
+			{name: "Neverending Boss Battle", url: "http://www.neopets.com/games/game.phtml?game_id=552"},
+			{name: "Typing Terror", url: "http://www.neopets.com/games/game.phtml?game_id=574"}
 		]},
-		{name: "Space Weaponry", url: ""},
-		{name: "Space Armour", url: ""},
-		{name: "Lever of Doom", url: ""},
-		{name: "Space Petpets", url: ""},
-		{name: "Grundo Warehouse", url: ""},
-		{name: "Adopt a Grundo", url: ""}
+		{name: "Space Weaponry", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=23"},
+		{name: "Space Armour", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=24"},
+		{name: "Lever of Doom", url: "http://www.neopets.com/space/strangelever.phtml"},
+		{name: "Space Petpets", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=26"},
+		{name: "Grundo Warehouse", url: "http://www.neopets.com/space/warehouse/prizecodes.phtml"},
+		{name: "Adopt a Grundo", url: "http://www.neopets.com/space/spaceadoption.phtml"}
 	];
 };
