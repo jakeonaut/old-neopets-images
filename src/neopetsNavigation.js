@@ -566,36 +566,144 @@ oldNeopetsChrome.GetNeopiaCentral = function(){
 
 oldNeopetsChrome.GetRooIsland = function(){
 	return [
-		{name: "", url: ""},
+		{name: "Blumaroll", url: "http://ncmall.neopets.com/mall/shop.phtml?page=blumaroll"},
+		{name: "Roo Island Properties", url: "www.neopets.com/neohome/"},
+		{name: "Poetry Contest", url: "http://www.neopets.com/contributions_poems.phtml"},
+		{name: "Art Gallery", url: "http://www.neopets.com/art/gallery.phtml"},
+		{name: "Colouring Pages", url: "http://www.neopets.com/worlds/roo/colouring_page.phtml"},
+		{name: "Coffee Shop", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=34"},
+		{name: "Merry Go Round", url: "http://www.neopets.com/worlds/roo/merrygoround.phtml"},
+		{name: "Dice-A-Roo", url: "http://www.neopets.com/games/dicearoo.phtml"},
+		{name: "Deadly Dice", url: "http://www.neopets.com/worlds/deadlydice.phtml"},
+		{name: "Souvenirs", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=76"},
+		{name: "Spring Shop", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=116"},
+		{name: "Games Room", url: "http://www.neopets.com/games/"},
+		{name: "Storytelling", url: "http://www.neopets.com/art/storytell.phtml"},
+		{name: "How To Draw", url: "http://www.neopets.com/art/drawing.phtml"}
 	];
 };
 
 oldNeopetsChrome.GetShenkuu = function(){
 	return [
-		{name: "", url: ""},
+		{name: "Lunar Temple", url: "http://www.neopets.com/shenkuu/lunar/"},
+		{name: "Remarkable Restoratives", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=102"},
+		{name: "Culinary Concoctions", url: "http://www.neopets.com/shenkuu/cooking.phtml"},
+		{name: "Exotic Foods", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=101"},
+		{name: "Wonderous Weaponry", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=100"},
+		{name: "Kuo-Jong", url: "http://www.neopets.com/games/game.phtml?game_id=707"},
+		{name: "Noda's Fortune Cookies", url: "http://ncmall.neopets.com/mall/fortune/"}
 	];
 };
 
 oldNeopetsChrome.GetTerrorMountain = function(){
 	return [
-		{name: "", url: ""},
+		{name: "Top of the Mountain", url: "", links: [
+			{name: "Dar-BLAT!!!", url: "www.neopets.com/games/game.phtml?game_id=895"},
+			{name: "Snow Faerie Quests", url: "http://www.neopets.com/winter/snowfaerie.phtml"},
+			{name: "Terror Mountain Tilt", url: "http://www.neopets.com/games/game.phtml?game_id=925"},
+			{name: "Super Happy Icy Fun Snow Shop", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=37"},
+			{name: "Snowbeast Snackrifice", url: "http://www.neopets.com/games/game.phtml?game_id=818"},
+			{name: "Toy Repair Shop", url: "http://www.neopets.com/winter/brokentoys.phtml"},
+			{name: "Garage Sale Game", url: "http://www.neopets.com/games/game.phtml?game_id=676"},
+			{name: "Igloo Garage Sale", url: "http://www.neopets.com/winter/igloo.phtml"},
+			{name: "Snow Wars 2", url: "http://www.neopets.com/games/game.phtml?game_id=544"},
+			{name: "Snow Roller", url: "http://www.neopets.com/games/game.phtml?game_id=1076"},
+			{name: "Shop of Mystery", url: "http://www.neopets.com/winter/shopofmystery.phtml"}
+		]},
+		{name: "Ice Caves", url: "", links: [
+			{name: "The Snowager", url: "http://www.neopets.com/winter/snowager.phtml"},
+			{name: "Snowmuncher", url: "http://www.neopets.com/games/game.phtml?game_id=412"},
+			{name: "Ice Arena", url: "http://www.neopets.com/dome/index.phtml?battle_location=2&rnd=1406759480&rndno=910"},
+			{name: "Colouring Pages", url: "http://www.neopets.com/winter/colouring.phtml"},
+			{name: "Hannah and the Ice Caves", url: "http://www.neopets.com/games/game.phtml?game_id=473"},
+			{name: "Let it Slide", url: "http://www.neopets.com/games/game.phtml?game_id=970"},
+			{name: "Ice Crystal Shop", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=36"},
+			{name: "The Neggery", url: "http://www.neopets.com/winter/neggery.phtml"}
+		]},
+		{name: "Scratch Card Kiosk", url: "http://www.neopets.com/winter/kiosk.phtml"},
+		{name: "Gift Tags", url: "http://www.neopets.com/winter/present_tags.phtml"},
+		{name: "Ice Cream Machine", url: "http://www.neopets.com/games/game.phtml?game_id=507"},
+		{name: "Advent Calendar", url: "http://www.neopets.com/winter/adventcalendar.phtml"},
+		{name: "Snowball Fight", url: "http://www.neopets.com/games/game.phtml?game_id=633"},
+		{name: "Slushie Shop", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=35"},
+		{name: "Rink Runner", url: "http://www.neopets.com/games/game.phtml?game_id=220"},
+		{name: "Ice Cream Cart", url: "http://www.neopets.com/winter/icecream.phtml"},
+		{name: "Merry Outfits", url: "http://www.neopets.com/winter/merryoutfits.phtml"},
+		{name: "Wintery Petpets", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=61"}
 	];
 };
 
 oldNeopetsChrome.GetTheLostDesert = function(){
 	return [
-		{name: "", url: ""},
+		{name: "Pyramids Game", url: "www.neopets.com/games/pyramids/"},
+		{name: "Sutek's Tomb", url: "http://www.neopets.com/games/game.phtml?game_id=306"},
+		{name: "Coltzan's Shrine", url: "http://www.neopets.com/desert/shrine.phtml"},
+		{name: "City of Sakhmet", url: "http://www.neopets.com/desert/sakhmet.phtml", links: [
+			{name: "Petpet Stall", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=50"},
+			{name: "Food Stall", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=49"},
+			{name: "Colouring Pages", url: "http://www.neopets.com/desert/colouringpages.phtml"},
+			{name: "Scarab 21", url: "http://www.neopets.com/games/scarab21/"},
+			{name: "Osiris Pottery", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=55"},
+			{name: "Sakhmet Solitaire", url: "http://www.neopets.com/games/sakhmet_solitaire/index.phtml"},
+			{name: "Battle Supplies", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=54"},
+			{name: "Emergency Supplies", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=85"},
+			{name: "Geos", url: "http://www.neopets.com/games/lobby/mp_lobby.phtml"},
+			{name: "Fruit Machine", url: "http://www.neopets.com/desert/fruit/index.phtml"},
+			{name: "Scratch Cards", url: "http://www.neopets.com/desert/sc/kiosk.phtml"},
+			{name: "Sutek's Scrolls", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=51"},
+			{name: "Paintbrush Stall", url: "http://www.neopets.com/desert/paintbrushes.phtml"},
+		]},
+		{name: "City of Qasala", url: "http://www.neopets.com/desert/qasala.phtml", links: [
+			{name: "Words of Antiquity", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=92"},
+			{name: "Desert Arms", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=91"},
+			{name: "Mystical Surroundings", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=108"},
+			{name: "Qasan Delights", url: "www.neopets.com/objects.phtml?type=shop&obj_type=90"}
+		]},
+		{name: "Tug-O-War", url: "http://www.neopets.com/games/game.phtml?game_id=909"},
+		{name: "Swarm!", url: "http://www.neopets.com/games/game.phtml?game_id=562"}
 	];
 };
 
 oldNeopetsChrome.GetTyrannia = function(){
 	return [
-		{name: "", url: ""},
+		{name: "Plateau", url: "", links: [
+			{name: "Lair of the Beast", url: "www.neopets.com/prehistoric/thebeast.phtml"},
+			{name: "Giant Omelette", url: "http://www.neopets.com/prehistoric/omelette.phtml?rand=11996"},
+			{name: "Wheel of Monotony", url: "http://www.neopets.com/prehistoric/monotony/monotony.phtml"},
+			{name: "Tyrannian Arena", url: "http://www.neopets.com/dome/"},
+			{name: "Battleground", url: "http://www.neopets.com/prehistoric/battleground/"},
+			{name: "Tyrannian War Memorial", url: "http://www.neopets.com/neopedia.phtml?neopedia_id=291"},
+			{name: "Town Hall", url: "http://www.neopets.com/prehistoric/townhall.phtml"},
+			{name: "Ticket Booth", url: "http://www.neopets.com/prehistoric/ticketbooth.phtml"},
+			{name: "Concert Hall", url: "http://www.neopets.com/prehistoric/concerthall.phtml"},
+			{name: "Destruct-O-Match III", url: "www.neopets.com/games/game.phtml?game_id=999"},
+			{name: "Tyrannian Food", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=42"}
+		]},
+		{name: "Tyrannian Petpets", url: "http://www.neopets.com/prehistoric/painting.phtml"},
+		{name: "Wheel of Mediocrity", url: "www.neopets.com/prehistoric/mediocrity.phtml"},
+		{name: "Tyrannian Weaponry", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=45"},
+		{name: "Furniture", url: "www.neopets.com/objects.phtml?type=shop&obj_type=43"},
+		{name: "Village", url: "http://www.neopets.com/prehistoric/village.phtml"},
+		{name: "Ugga Shinies", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=117"}
 	];
 };
 
 oldNeopetsChrome.GetVirtupetsSpaceStation = function(){
 	return [
-		{name: "", url: ""},
+		{name: "Recreation Deck", url: "", links: [
+			{name: "Gormball", url: ""},
+			{name: "Splat-a-Sloth", url: ""},
+			{name: "Space Battledome Arena", url: ""},
+			{name: "Evil Fuzzles From Beyond The Stars", url: ""},
+		]},
+		{name: "Hangar", url: "", links: [
+			{name: "", url: ""},
+		]},
+		{name: "Space Weaponry", url: ""},
+		{name: "Space Armour", url: ""},
+		{name: "Lever of Doom", url: ""},
+		{name: "Space Petpets", url: ""},
+		{name: "Grundo Warehouse", url: ""},
+		{name: "Adopt a Grundo", url: ""}
 	];
 };
