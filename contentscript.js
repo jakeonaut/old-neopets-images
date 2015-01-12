@@ -45,7 +45,7 @@ var loadVariables = function(callback){
 	});
 }
 
-var scripts = ["jquery", "neopetsInit", null, "neopetsCollection", "neopetsAdoption", "neopetsCreate", "neopetsNewToOld", "neopetsMisc", "neopetsNavigation", "neopetsMain"];
+var scripts = ["jquery", "neopetsInit", null, "neopetsCollection_helper", "neopetsCollection", "neopetsAdoption", "neopetsCreate", "neopetsNewToOld", "neopetsMisc", "neopetsNavigation", "neopetsMain"];
 var callback = function(){};
 for (var i = scripts.length-1; i >= 0; i--){
 	if (scripts[i] === null){

@@ -64,6 +64,7 @@ oldNeopetsChrome.AddQuickrefToSidebar = function(){
 			var href = link.attr('href');
 			link.attr('href', 'javascript:;');
 			$(link).click(function(hhref){
+				console.log(hhref);
 				$.ajax(hhref)
 					.done(function(){
 						window.location.reload();

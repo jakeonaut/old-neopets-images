@@ -1,10 +1,8 @@
 2. TODO:
-	0. add faeeue city link submenu
 	1. sometimes make active  pet quickref sidebar doesnt work
 	1. make ticket booth have link to concert hall
 	0. Fix clothing bug below
 		-add an option to override pet customization/clothing
-	4. add jelly neo avatar cheat sheet link on profile page (and site preference page)
 	8. the battledome
 	9. old neopets explore
 		-http://images.neopets.com/maps/explore/explore_2005_02.gif

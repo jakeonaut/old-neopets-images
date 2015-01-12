@@ -1,6 +1,6 @@
 {
   "name": "Old Neopets Images",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "manifest_version": 2,
   "description": "Modify your Neopets experience to your liking!",
   "options_page": "options.html",
@@ -23,6 +23,7 @@
   ],  
   "web_accessible_resources": [ "src/jquery.js",
 								"src/neopetsInit.js",
+								"src/neopetsCollection_helper.js",
 								"src/neopetsCollection.js",
 								"src/neopetsAdoption.js",
 								"src/neopetsCreate.js",

@@ -3,11 +3,14 @@ import urllib2
 from bs4 import BeautifulSoup
 import time
 
+print "use new version"
+return
 start = time.time()
 response = urllib2.urlopen("http://www.neocolours.me.uk/paintbrushes.php")
 soup = BeautifulSoup(response.read())
 f = open('neopetsCollection.js', 'w')
 f.write('oldNeopetsChrome.ChangeImageByID = function(image){\n')
+f.write('if (oldNeopetsChrome.ChangeImageByManualID(image)) return true;\n');
 #looking at list of all colours
 for link in soup.find_all('a'):
 	href = link.get('href')
@@ -17,12 +20,7 @@ for link in soup.find_all('a'):
 			data[i] = data[i].split('=')
 		colour = data[0][1]
 		print("begin " + colour.upper())
-		f.write("var colour = '"+colour+"';");
-		f.write("var changeImage = function(new_ids, pet_name){")
-		for i in range(2):
-			f.write("\tif (oldNeopetsChrome.ChangeImage(image, '/' + new_ids["+str(i)+"] + '/',")
-			f.write("\t\tpet_name + '_' + colour + '_baby.gif')) return true;")
-		f.write("};\n")
+		f.write("var changeImage = oldNeopetsChrome.ChangechangeImage('"+colour.lower()+"');\n");
 		response2 = urllib2.urlopen("http://www.neocolours.me.uk/"+href)
 		soup2 = BeautifulSoup(response2.read())
 		
@@ -50,8 +48,12 @@ for link in soup.find_all('a'):
 						counter += 1
 					elif 'http://pets.neopets.com' in href3 and counter == 1:
 						female_id = href3[27:35]
+						counter += 1
+					# need to check if there are old version of this pet colour combo
 						f.write("if (changeImage(['"+male_id+"','"+female_id+"'],'"+species+"'))return true;")
 						break
+		#manually add colours that have no associated paint brush
+		colours = ['alien', 'robot', ]
 		print("colour " + colour + " complete")
 		
 f.write('\n};')
