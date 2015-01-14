@@ -22,10 +22,6 @@ if (oldNeopetsChrome.remove_bottom_image === true){
 	oldNeopetsChrome.RemoveBottomImage();
 }
 
-if (oldNeopetsChrome.add_neofriend_name_links === true){
-	oldNeopetsChrome.AddNeofriendNameLinks();
-}
-
 if (oldNeopetsChrome.change_new_images_to_old === true){
 	oldNeopetsChrome.ChangeAllImages();
 }
@@ -33,3 +29,7 @@ if (oldNeopetsChrome.change_new_images_to_old === true){
 if ($( "a:contains('Log in')" ).length === 0){
 	oldNeopetsChrome.AddQuickrefToSidebar();
 }
+
+//other misc, why even have options
+oldNeopetsChrome.AddNeofriendNameLinks();
+oldNeopetsChrome.LinkToConcertHall();

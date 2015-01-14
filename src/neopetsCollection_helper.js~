@@ -88,14 +88,12 @@ oldNeopetsChrome.ChangeImageByManualID = function(image){
 		['aisha', ['9zfrzklx']], ['draik', ['95nsnmxj']], ['gelert', ['bbfzw8l8']], ['gnorbu', ['rcjxcm6v']], ['grarrl', ['zjd3lj3o']], ['grundo', ['4flmwkcx']], ['ixi', ['d9tlmd82']], ['jetsam', ['l82zrrmx']], ['jubjub', ['hq4lsczg']], ['kacheek', ['8n4qgd7f']], ['kiko', ['mfrmvrk6']], ['koi', ['9zz8c7v2']], ['kougra', ['gvbdmwkf']], ['kyrii', ['njgwskmz']], ['lenny', ['jjfvkl5h']], ['lupe', ['5v6xlgwc']], ['meerca', ['5hs3xn83']], ['moehog', ['8klgs5l4']], ['mynci', ['bqxcm2tm']], ['peophin', ['r2rlnztf']], ['poogle', ['fns52f3v']], ['pteri', ['jkdrm326']], ['skeith', ['2jodfnzh']], ['tuskaninny', ['3z5r33t7']], ['uni', ['lgnhzffc']], ['usul', ['fxkmhzdk']], ['wocky', ['om5n63d8']], ['zafara', ['cl4z39tb']]
 	]);
 	addToCollection('royalboy', [
-		['bruce', ['9vqlg9m6']], ['elephante', ['lx9k3hcb']], ['eyrie', ['59jgl6l9']], ['flotsam', ['jgqtbrh2']], ['gelert', ['bgj5qgn2']], ['grarrl', ['xobkqzxb']], ['ixi', ['l6nvhoxq']], ['kau', ['2mwq3vf8']], ['korbat', ['wk7so52h']], ['kougra', ['df75rstv']], ['krawk', ['8z4srodg']], ['kyrii', ['7msogmvz']], ['moehog', ['9tt2gfld']], ['mynci', ['cwx3glvx']], ['quiggle', ['ktv3ggzc']], ['scorchio', ['w4schsql']], ['shoyru', ['3mnzm6bn']], ['uni', ['r2nnw5tv']], ['usul', ['5g46cfm5']], ['zafara', ['3l7tz3j8']]
+		['bruce', ['9vqlg9m6']], ['elephante', ['lx9k3hcb']], ['eyrie', ['59jgl6l9']], ['flotsam', ['jgqtbrh2']], ['gelert', ['bgj5qgn2']], ['grarrl', ['xobkqzxb']], ['ixi', ['l6nvhoxq']], ['kau', ['2mwq3vf8']], ['korbat', ['wk7so52h']], ['kougra', ['df75rstv']
 	]);
-	addToCollection('royalgirl', [
-		['bruce', ['g2brtwg7']], ['buzz', ['3bnx6zgn']], ['elephante', ['lvgs2lq7']], ['eyrie', ['4xllsmf5']], ['gelert', ['kxtzb5nq']], ['grarrl', ['t49g7o28']], ['jubjub', ['33fh6olg']], ['kau', ['95s28dt6']], ['korbat', ['j7lc7xw2']], ['kougra', ['sst6bfbr']], ['krawk', ['qm44b8r7']], ['kyrii', ['q34ndtk3']], ['lupe', ['qzs244js']], ['moehog', ['dc9jk4qc']], ['mynci', ['nz32jtx7']], ['poogle', ['xjkjddzn']], ['shoyru', ['wo3zscj7']], ['uni', ['5kjhm6b7']], ['usul', ['88s5lgxf']], ['zafara', ['rfhf76xz']]
-	]);
-	addToCollection("tyrranian", [
-		['meerca', ['f9swrj7t']], ['scorchio', ['x3ftwc4q']], ['usul', ['gdw46zvg']]
-	]);
+			/*
+			-royal
+			-tyrranian
+			-zombie*?*/
 			
 	for (var i = 0; i < collection.length; i++){
 		if (oldNeopetsChrome.TryChangeImage(image, collection[i].colour, collection[i].species, collection[i].ids)) return true;

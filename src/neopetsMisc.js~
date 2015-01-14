@@ -15,8 +15,7 @@ oldNeopetsChrome.InventoryShopWizardValue = function(){
 			shopwizard: item_name,
 			table: "shop",
 			criteria: "exact",
-			min_price: 0,
-			max_price: 99999
+			
 		}
 	}).done(function(data){
 		console.log(data);

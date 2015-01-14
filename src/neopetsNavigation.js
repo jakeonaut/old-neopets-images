@@ -679,6 +679,7 @@ oldNeopetsChrome.GetTyrannia = function(){
 			{name: "Destruct-O-Match III", url: "www.neopets.com/games/game.phtml?game_id=999"},
 			{name: "Tyrannian Food", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=42"}
 		]},
+		{name: "Cave Paintings", url: "http://www.neopets.com/prehistoric/painting.phtml"},
 		{name: "Tyrannian Petpets", url: "http://www.neopets.com/prehistoric/painting.phtml"},
 		{name: "Wheel of Mediocrity", url: "www.neopets.com/prehistoric/mediocrity.phtml"},
 		{name: "Tyrannian Weaponry", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=45"},

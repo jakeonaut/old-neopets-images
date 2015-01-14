@@ -73,8 +73,11 @@ oldNeopetsChrome.RainbowPoolScript = function(){
 	try{		
 		set_pet_img = function(url, color_name) {
 			var pet_img = document.getElementById('rp_pet_img');
+			$(pet_img).width(300);
+			$(pet_img).height(300);
+			$(pet_img).css('padding', '0px');
 			pet_img.src = url;
-			if (oldNeopetsChrome.ChangeImageByID($(pet_img))){
+			if ($(pet_img).attr('src').indexOf("images.neopets.com") >= 0 || oldNeopetsChrome.ChangeImageByID($(pet_img))){
 				$(pet_img).width(200);
 				$(pet_img).height(200);
 				$(pet_img).css('padding', '50px');
@@ -92,7 +95,7 @@ oldNeopetsChrome.RainbowPoolScript = function(){
 			pet_title.innerHTML = color_name;
 		}
 		$("#rp_pet_img").attr('original_src', $('#rp_pet_img').attr('src'));
-		set_pet_img($('#rp_pet_img').attr('src'), $("#rp_pet_title").html().toLowerCase());
+		set_pet_img($('#rp_pet_img').attr('src'), $("#rp_pet_title").html());
 	}catch(err){
 		console.log(err);
 	}

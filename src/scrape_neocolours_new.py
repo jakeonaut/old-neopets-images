@@ -52,13 +52,13 @@ for colour in colours:
 			female_id = ''
 			for img in soup3.find_all('img'):
 				href3 = img.get('src')
-				if 'http://pets.neopets.com' in href3 and counter == 0:
-					male_id = href3[27:35]
+				if 'http://pets.neopets.com' in href3:
 					counter += 1
-				elif 'http://pets.neopets.com' in href3 and counter == 1:
-					female_id = href3[27:35]
-					counter += 1
-				elif 'http://images.neopets.com/pets' in href3 and counter == 2:
+					if (counter == 2):
+						female_id = href3[27:35]
+					if (counter == 6):
+						male_id = href3[27:35]
+				elif 'http://images.neopets.com/pets' in href3:
 					if (collection_count >= 1):
 						f.write(",\n")
 					f.write("\t{colour: '"+colour+"', species: '"+species+"',")
