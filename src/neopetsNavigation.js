@@ -12,6 +12,10 @@ oldNeopetsChrome.AddNavigationLinks = function(){
 	var navigation = $("#template_nav");
 	var nav_buttons = navigation.children();
 	var explore_list = $($(nav_buttons[3]).children()[1]);
+	var games_list = $($(nav_buttons[2]).children()[1]);
+	
+	oldNeopetsChrome.AddNavList(games_list,
+		"Featured Game", [], "http://www.neopets.com/games/featuredgame/");
 	
 	if (oldNeopetsChrome.NAVIGATION_DAILIES){
 		oldNeopetsChrome.AddNavList(explore_list, 

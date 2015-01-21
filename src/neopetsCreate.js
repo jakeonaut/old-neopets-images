@@ -19,6 +19,7 @@ oldNeopetsChrome.CreateNeopetScript = function(){
 		$(image).replaceWith(pet_pic);
 		$(image).attr('dont_use', true);
 	}
+	$(image).attr("id", "pet_pic_new");
 	
 	//change images of thumbnail
 	$('.pet_thumb').attr('already_changed', true);
@@ -72,11 +73,11 @@ oldNeopetsChrome.CreateNeopetScript = function(){
 					$("#"+selected_pet).css("opacity", "1");
 				}
 				
-				$(image).attr('src', "http://images.neopets.com/pets/"+selected_pet+"_"+selected_pet_colour+"_baby.gif");
-				$(image)[0].onerror = function(){
+				$("#pet_pic_new").attr('src', "http://images.neopets.com/pets/"+selected_pet+"_"+selected_pet_colour+"_baby.gif");
+				$("#pet_pic_new")[0].onerror = function(){
 					this.onerror = "";
-					$(image).replaceWith(pet_pic);
-					$(image).attr('dont_use', true);
+					$("#pet_pic_new").replaceWith(pet_pic);
+					$("#pet_pic_new").attr('dont_use', true);
 					document.getElementById('pet_pic').src='getpetpic.phtml?selected_pet_colour='+selected_pet_colour+'&selected_pet='+selected_pet+'&gender='+gender;
 				}
 			}else if (species==prev_selected_pet){
@@ -156,7 +157,7 @@ oldNeopetsChrome.CreateNeopetScript = function(){
 		img_arr=img_selected_yellow_arr;
 		}
 
-		if ($(image).attr('dont_use') === undefined || $(image).attr('dont_use') === true){
+		if ($("#pet_pic_new").attr('dont_use') === true){
 			for(var i=0;i<species_arr.length;i++){
 				if (species_arr[i].toLowerCase()==selected_pet.toLowerCase()){
 
@@ -167,7 +168,7 @@ oldNeopetsChrome.CreateNeopetScript = function(){
 				}
 			}
 		}else{
-			$(image).attr('src', "http://images.neopets.com/pets/"+selected_pet+"_"+selected_pet_colour+"_baby.gif");
+			$("#pet_pic_new").attr('src', "http://images.neopets.com/pets/"+selected_pet+"_"+selected_pet_colour+"_baby.gif");
 		}
 
 		//also try to change the thumbnail images

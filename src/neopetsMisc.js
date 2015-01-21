@@ -2,25 +2,17 @@ oldNeopetsChrome.RemoveBottomImage = function(){
 	$(".footerNifty").css("display", "none");
 }
 
-oldNeopetsChrome.InventoryShopWizardValue = function(){
-	var item_name = "";
-
-	//Shop wizard form ajax post
-	$.ajax({
-		type: "POST",
-		url: "market.phtml",
-		data: {
-			type: "process_wizard",
-			feedset: "0",
-			shopwizard: item_name,
-			table: "shop",
-			criteria: "exact",
-			min_price: 0,
-			max_price: 99999
+oldNeopetsChrome.GameLinkAutomatic = function(){
+	var size = "regular";
+	var quality = "high";
+	for (var i = 0; i < $("a").length; i++){
+		try{
+			if ($($("a")[i]).attr("href").indexOf('/games/game.phtml?game_id=') >= 0){
+				$($("a")[i]).attr("href", $($("a")[i]).attr("href") + "&size="+size+"&quality="+quality+"&play=true");
+			}
+		}catch(err){
 		}
-	}).done(function(data){
-		console.log(data);
-	});
+	}
 }
 
 oldNeopetsChrome.LinkToConcertHall = function(){
@@ -62,7 +54,6 @@ oldNeopetsChrome.AddNeofriendNameLinks = function(){
 	}catch(err){}
 }
 
-oldNeopetsChrome.MakeActivePet
 oldNeopetsChrome.AddQuickrefToSidebar = function(){
 	var url = window.location.href;
 	if (url.indexOf("http://www.neopets.com/quickref.phtml") >= 0) return;

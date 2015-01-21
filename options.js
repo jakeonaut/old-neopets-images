@@ -21,12 +21,16 @@ function save_options(){
 		}
 	}
 	console.log(custom_navigation_links);
+
+	var old_shop_keepers = document.getElementById("old_shop_keepers").checked;
+	
+	var random_shop_wizard = document.getElementById("random_shop_wizard").checked;
 	
 	var remove_bottom_image = document.getElementById("remove_bottom_image").checked;
 	
-	var add_neofriend_name_links = document.getElementById("add_neofriend_name_links").checked;
-	
 	var add_quickref_to_sidebar = document.getElementById("add_quickref_to_sidebar").checked;
+	
+	var game_link_automatic = document.getElementById("game_link_automatic").checked;
 	
 	///////////
 	chrome.storage.sync.set({
@@ -37,9 +41,11 @@ function save_options(){
 		NAVIGATION_WORLDS: NAVIGATION_WORLDS,
 		NAVIGATION_CUSTOM: NAVIGATION_CUSTOM,
 		custom_navigation_links: custom_navigation_links,
+		old_shop_keepers: old_shop_keepers,
+		random_shop_wizard: random_shop_wizard,
 		remove_bottom_image: remove_bottom_image,
-		add_neofriend_name_links: add_neofriend_name_links,
-		add_quickref_to_sidebar: add_quickref_to_sidebar
+		add_quickref_to_sidebar: add_quickref_to_sidebar,
+		game_link_automatic: game_link_automatic
 	}, 	function(){
 		//Update status to let user know options were saved
 		var status = document.getElementById("status");
@@ -60,9 +66,11 @@ function restore_options(){
 		NAVIGATION_WORLDS: true,
 		NAVIGATION_CUSTOM: false,
 		custom_navigation_links: [],
+		old_shop_keepers: true,
+		random_shop_wizard: true,
 		remove_bottom_image: true,
-		add_neofriend_name_links: true,
-		add_quickref_to_sidebar: true
+		add_quickref_to_sidebar: true,
+		game_link_automatic: true
 	}, function(items){
 		document.getElementById('change_new_images_to_old').checked = items.change_new_images_to_old;
 		document.getElementById('disable_pet_customization').checked = items.disable_pet_customization;
@@ -105,9 +113,11 @@ function restore_options(){
 			document.getElementById("custom_nav_links").appendChild(div);
 		}
 		
+		document.getElementById("old_shop_keepers").checked = items.old_shop_keepers;
+		document.getElementById("random_shop_wizard").checked = items.random_shop_wizard;
 		document.getElementById('remove_bottom_image').checked = items.remove_bottom_image;
-		document.getElementById('add_neofriend_name_links').checked = items.add_neofriend_name_links;
 		document.getElementById('add_quickref_to_sidebar').checked = items.add_quickref_to_sidebar;
+		document.getElementById("game_link_automatic").checked = item.game_link_automatic;
 	});
 }
 

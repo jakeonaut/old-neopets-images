@@ -26,8 +26,12 @@ if (oldNeopetsChrome.change_new_images_to_old === true){
 	oldNeopetsChrome.ChangeAllImages();
 }
 
-if ($( "a:contains('Log in')" ).length === 0){
+if (oldNeopetsChrome.add_quickref_to_sidebar && $( "a:contains('Log in')" ).length === 0){
 	oldNeopetsChrome.AddQuickrefToSidebar();
+}
+
+if (oldNeopetsChrome.game_link_automatic){
+	oldNeopetsChrome.GameLinkAutomatic();
 }
 
 //other misc, why even have options

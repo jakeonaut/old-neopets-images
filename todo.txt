@@ -2,19 +2,13 @@ http://bookofages.jellyneo.net/history/old-pets/
 http://www.neopets.com/~Mega_Bombe
 
 2. TODO:
-	1. make estimated value in inventory actually do a shop wizard search in ajax
-		-affect SBD and gallery and shop as well?
 	9. old neopets explore
 		http://images.neopets.com/maps/explore/explore_2005_02.gif
+		http://bookofages.jellyneo.net/lands/
 		-if anything convert the flash images to html (screenshot the new maps and make image links)
-	8. the battledome
+	8. the battledome (is this even possible)
 3. Bug:
 	-there are a number of rainbowpool options that don't work correctly but should
 		-Abandoned aishas, bruce, ixi, elephante?
-		-Deluxe Colours:
-		-http://www.sunnyneo.com/rainbowpool.php?species=buzz&colour=zombie#info
-		-go through with all noclothes....
-			-will putting on any clothes mess up my sidebar algorithm??
-		-also some neopets aren't caught (colours w/o paintbrushes (alien))
 	-why does nav options blur the text?
 	

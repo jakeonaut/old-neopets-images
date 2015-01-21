@@ -64,6 +64,54 @@ oldNeopetsChrome.ChangeAllImages = function(image){
 				$(this).css('background-size', '');
 			}
 		}
+		
+		else if (oldNeopetsChrome.old_shop_keepers){
+			oldNeopetsChrome.OldShopKeepers(image);
+		}
+	}
+}
+
+oldNeopetsChrome.OldShopKeepers = function(image){	
+	var oldShopKeepers = [
+		["http://images.neopets.com/shopkeepers/w7.gif", "http://bookofages.jellyneo.net/assets/imgs/history/pages/old-characters_magical-books.gif"],
+		["http://images.neopets.com/shopkeepers/w9.gif", "http://bookofages.jellyneo.net/assets/imgs/history/pages/old-characters_battle-magic-1.gif"],
+		["http://images.neopets.com/shopkeepers/w10.gif", "http://bookofages.jellyneo.net/assets/imgs/history/pages/old-characters_defence-magic-1.gif"],
+		["http://images.neopets.com/shopkeepers/w12.gif", "http://bookofages.jellyneo.net/assets/imgs/history/pages/old-characters_garden-centre.gif"],
+		["http://images.neopets.com/shopkeepers/w2.gif", "http://bookofages.jellyneo.net/assets/imgs/history/pages/old-characters_magic-shop.gif"],
+		["http://images.neopets.com/shopkeepers/w16.gif", "http://bookofages.jellyneo.net/assets/imgs/history/pages/old-characters_quinton.gif"],
+		["http://images.neopets.com/shopkeepers/shopwizard.gif",
+		["http://bookofages.jellyneo.net/assets/imgs/history/pages/old-characters_shop-wizard.gif", "http://bookofages.jellyneo.net/assets/imgs/history/pages/old-characters_island-wizard.gif", "http://bookofages.jellyneo.net/assets/imgs/history/pages/old-characters_halloween-wizard.gif", "http://bookofages.jellyneo.net/assets/imgs/history/pages/old-characters_space-wizard.gif", "http://bookofages.jellyneo.net/assets/imgs/history/pages/old-characters_water-wizard.gif"]],
+		["http://images.neopets.com/new_shopkeepers/w1569.gif", "http://bookofages.jellyneo.net/assets/imgs/history/pages/old-characters_bank-manager.gif"],
+		["http://images.neopets.com/images/wishingwell.gif", "http://bookofages.jellyneo.net/assets/imgs/history/pages/old-characters_wishing-well-1.gif"]
+	];
+
+	for (var i = 0; i < oldShopKeepers.length; i++){
+		if ($(image).attr('src') === oldShopKeepers[i][0]){			
+			$(image).attr('original_width', $(image).attr("width"));
+			$(image).attr('original_height', $(image).attr("height"));
+			if (typeof oldShopKeepers[i][1] === "string")
+				$(image).attr('src', oldShopKeepers[i][1]);
+			else{
+				if (oldNeopetsChrome.random_shop_wizard){
+					var srcs = oldShopKeepers[i][1];
+					var randelement = Math.floor(Math.random()*srcs.length);
+					var src = srcs[randelement];
+					$(image).attr('src', src);
+				}else{
+					$(image).attr('src', oldShopKeepers[i][1][0]);
+				}
+			}
+			$(image).attr("width", "");
+			$(image).attr("height", "");
+			
+			$(image)[0].onerror = function(){
+				this.onerror = "";
+				$(this).attr('src', $(this).attr('original_src'));
+				$(this).attr("width", $(this).attr("original_width"));
+				$(this).attr("height", $(this).attr("original_height"));
+			}
+			break;
+		}
 	}
 }
 

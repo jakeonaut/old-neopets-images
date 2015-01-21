@@ -17,9 +17,11 @@ var loadVariables = function(callback){
 		NAVIGATION_WORLDS: true,
 		NAVIGATION_CUSTOM: false,
 		custom_navigation_links: [],
+		old_shop_keepers: true,
+		random_shop_wizard: true,
 		remove_bottom_image: true,
-		add_neofriend_name_links: true,
-		add_quickref_to_sidebar: true
+		add_quickref_to_sidebar: true,
+		game_link_automatic: true
 	}, function(items){
 		var script = "";
 		script = "oldNeopetsChrome.change_new_images_to_old = " + items.change_new_images_to_old + ";\n";
@@ -34,9 +36,11 @@ var loadVariables = function(callback){
 			script += "{name: '" + items.custom_navigation_links[i].name +"', url: '" + items.custom_navigation_links[i].url +"'}";
 		}
 		script += "];\n";
-		script += "oldNeopetsChrome.add_neofriend_name_links = " + items.add_neofriend_name_links + ";\n";
+		script += "oldNeopetsChrome.old_shop_keepers = " + items.old_shop_keepers + ";\n";
+		script += "oldNeopetsChrome.random_shop_wizard = " + items.random_shop_wizard + ";\n";
 		script += "oldNeopetsChrome.remove_bottom_image = " + items.remove_bottom_image + ";\n";
 		script += "oldNeopetsChrome.add_quickref_to_sidebar = " + items.add_quickref_to_sidebar + ";\n";
+		script += "oldNeopetsChrome.game_link_automatic = " + items.game_link_automatic + ";\n";
 		
 		var script_tag = document.createElement('script');
 		script_tag.textContent = script;
@@ -45,7 +49,7 @@ var loadVariables = function(callback){
 	});
 }
 
-var scripts = ["jquery", "neopetsInit", null, "neopetsCollection_helper", "neopetsCollection", "neopetsAdoption", "neopetsCreate", "neopetsNewToOld", "neopetsMisc", "neopetsNavigation", "neopetsMain"];
+var scripts = ["jquery", "neopetsInit", null, "neopetsCollection_helper", "neopetsCollection", "neopetsAdoption", "neopetsCreate", "neopetsNewToOld", "neopetsMisc", "neopetsNavigation", "neopetsExplore", "neopetsMain"];
 var callback = function(){};
 for (var i = scripts.length-1; i >= 0; i--){
 	if (scripts[i] === null){
