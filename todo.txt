@@ -2,6 +2,9 @@ http://bookofages.jellyneo.net/history/old-pets/
 http://www.neopets.com/~Mega_Bombe
 
 2. TODO:
+	1. why is page action on non neopets pages?
+	2. Options Game Link is messed up
+	3. My Script breaks Kiko Pop!! allow disabling extension through page action?
 	9. old neopets explore
 		http://images.neopets.com/maps/explore/explore_2005_02.gif
 		http://bookofages.jellyneo.net/lands/
