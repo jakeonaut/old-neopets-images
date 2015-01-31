@@ -210,6 +210,7 @@ oldNeopetsChrome.GetDailyChanceGames = function(){
 
 oldNeopetsChrome.GetPaidChanceGames = function(){
 	return [
+		{name: "Bargain Stocks", url: "http://www.neopets.com/stockmarket.phtml?type=list&bargain=true"},
 		{name: "Smuggler's Cove", url: "http://www.neopets.com/pirates/smugglerscove.phtml"},
 		{name: "Garage Sale", url: "http://www.neopets.com/winter/igloo.phtml"},
 		{name: "Buried Treasure", url: "http://www.neopets.com/pirates/buriedtreasure/index.phtml"},

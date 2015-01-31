@@ -14,26 +14,28 @@ oldNeopetsChrome.add_navigation_links = true;
 	oldNeopetsChrome.custom_navigation_links = [];
 */
 
-if (oldNeopetsChrome.add_navigation_links === true){
-	oldNeopetsChrome.AddNavigationLinks();
-}
+if (!oldNeopetsChrome.temp_disable_extension){
+	if (oldNeopetsChrome.add_navigation_links === true){
+		oldNeopetsChrome.AddNavigationLinks();
+	}
 
-if (oldNeopetsChrome.remove_bottom_image === true){
-	oldNeopetsChrome.RemoveBottomImage();
-}
+	if (oldNeopetsChrome.remove_bottom_image === true){
+		oldNeopetsChrome.RemoveBottomImage();
+	}
 
-if (oldNeopetsChrome.change_new_images_to_old === true){
-	oldNeopetsChrome.ChangeAllImages();
-}
+	if (oldNeopetsChrome.change_new_images_to_old === true){
+		oldNeopetsChrome.ChangeAllImages();
+	}
 
-if (oldNeopetsChrome.add_quickref_to_sidebar && $( "a:contains('Log in')" ).length === 0){
-	oldNeopetsChrome.AddQuickrefToSidebar();
-}
+	if (oldNeopetsChrome.add_quickref_to_sidebar && $( "a:contains('Log in')" ).length === 0){
+		oldNeopetsChrome.AddQuickrefToSidebar();
+	}
 
-if (oldNeopetsChrome.game_link_automatic){
-	oldNeopetsChrome.GameLinkAutomatic();
-}
+	if (oldNeopetsChrome.game_link_automatic){
+		oldNeopetsChrome.GameLinkAutomatic();
+	}
 
-//other misc, why even have options
-oldNeopetsChrome.AddNeofriendNameLinks();
-oldNeopetsChrome.LinkToConcertHall();
+	//other misc, why even have options
+	oldNeopetsChrome.AddNeofriendNameLinks();
+	oldNeopetsChrome.LinkToConcertHall();
+}

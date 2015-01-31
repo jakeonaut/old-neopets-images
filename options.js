@@ -1,4 +1,5 @@
 function save_options(){
+	var temp_disable_extension = document.getElementById("temp_disable_extension").checked;
 	var change_new_images_to_old = document.getElementById("change_new_images_to_old").checked;
 	
 	var disable_pet_customization = document.getElementById("disable_pet_customization").checked;
@@ -34,6 +35,7 @@ function save_options(){
 	
 	///////////
 	chrome.storage.sync.set({
+		temp_disable_extension: temp_disable_extension,
 		change_new_images_to_old: change_new_images_to_old,
 		disable_pet_customization: disable_pet_customization,
 		add_navigation_links: add_navigation_links,
@@ -59,6 +61,7 @@ function save_options(){
 function restore_options(){
 	//Use default values
 	chrome.storage.sync.get({
+		temp_disable_extension: false,
 		change_new_images_to_old: true,
 		disable_pet_customization: false,
 		add_navigation_links: true,
@@ -72,6 +75,7 @@ function restore_options(){
 		add_quickref_to_sidebar: true,
 		game_link_automatic: true
 	}, function(items){
+		document.getElementById("temp_disable_extension").checked = items.temp_disable_extension;
 		document.getElementById('change_new_images_to_old').checked = items.change_new_images_to_old;
 		document.getElementById('disable_pet_customization').checked = items.disable_pet_customization;
 		document.getElementById('add_navigation_links').checked = items.add_navigation_links;
@@ -80,7 +84,6 @@ function restore_options(){
 		document.getElementById('NAVIGATION_CUSTOM').checked = items.NAVIGATION_CUSTOM;
 		
 		document.getElementById("custom_nav_links").innerHTML = "";
-		console.log(items);
 		for (var i = 0; i < items.custom_navigation_links.length; i++){
 			var div = document.createElement('div');
 			div.id = 'custom_nav_link';

@@ -24,7 +24,8 @@ var loadVariables = function(callback){
 		game_link_automatic: true
 	}, function(items){
 		var script = "";
-		script = "oldNeopetsChrome.change_new_images_to_old = " + items.change_new_images_to_old + ";\n";
+		script += "oldNeopetsChrome.temp_disable_extension = " + items.temp_disable_extension + ";\n";
+		script += "oldNeopetsChrome.change_new_images_to_old = " + items.change_new_images_to_old + ";\n";
 		script += "oldNeopetsChrome.disable_pet_customization = " + items.disable_pet_customization + ";\n";
 		script += "oldNeopetsChrome.add_navigation_links = " + items.add_navigation_links + ";\n";
 		script += "oldNeopetsChrome.NAVIGATION_DAILIES = "+ items.NAVIGATION_DAILIES +";\n";
