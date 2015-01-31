@@ -7,7 +7,7 @@
 // Called when the url of a tab changes.
 function checkForValidUrl(tabId, changeInfo, tab) {
 	// If the tabs url starts with...
-	if (tab.url.indexOf('www.neopets.com/') >= 0) {
+	if (tab.url.indexOf("http://www.neopets.com") === 0) {
 		// ... show the page action.
 		chrome.pageAction.show(tabId);
 	}

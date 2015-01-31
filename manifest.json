@@ -1,6 +1,6 @@
 {
   "name": "Old Neopets Images",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "manifest_version": 2,
   "description": "Modify your Neopets experience to your liking!",
   "options_page": "options.html",
@@ -36,6 +36,7 @@
 								"src/neopetsExplore.js",
 								"src/neopetsMain.js"],
   "permissions": [
+	"tabs",
 	"storage",
 	"http://*/"
   ],
