@@ -51,7 +51,7 @@ function save_options(){
 	}, 	function(){
 		//Update status to let user know options were saved
 		var status = document.getElementById("status");
-		status.textContent = "Options saved.";
+		status.textContent = "Options saved. Reload to see changes.";
 		setTimeout(function(){
 			status.textContent = '';
 		}, 750);
@@ -120,7 +120,7 @@ function restore_options(){
 		document.getElementById("random_shop_wizard").checked = items.random_shop_wizard;
 		document.getElementById('remove_bottom_image').checked = items.remove_bottom_image;
 		document.getElementById('add_quickref_to_sidebar').checked = items.add_quickref_to_sidebar;
-		document.getElementById("game_link_automatic").checked = item.game_link_automatic;
+		document.getElementById("game_link_automatic").checked = items.game_link_automatic;
 	});
 }
 
