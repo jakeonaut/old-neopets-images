@@ -562,7 +562,7 @@ oldNeopetsChrome.GetNeopiaCentral = function(){
 		{name: "Rainbow Pool", url: "http://www.neopets.com/pool/"},
 		{name: "NC Mall", url: "http://ncmall.neopets.com/mall/shop.phtml?page=&cat="},
 		{name: "Post Office", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=58"},
-		{name: "Neolodge", url: "www.neopets.com/neolodge.phtml"},
+		{name: "Neolodge", url: "http://www.neopets.com/neolodge.phtml"},
 		{name: "Magic Shop", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=2"},
 		{name: "Pharmacy", url: "http://www.neopets.com/objects.phtml?type=shop&obj_type=13"},
 		{name: "Movie Central", url: "http://www.neopets.com/moviecentral/index.phtml"}
