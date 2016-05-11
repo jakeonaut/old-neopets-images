@@ -106,6 +106,17 @@ oldNeopetsChrome.AddNavListRecursive = function(parent_list, name, child_list, l
 			}else{
 				var a = $(document.createElement('a'));
 				$(a).html("» "+child_list[i].name);
+                $(a).css("color", "#ffffff");
+                $(a).hover(
+                    //hover in
+                    function(e){
+                        this.css("color", "#ffff00");
+                    }.bind(a),
+                    //hover out
+                    function(e){
+                        this.css("color", "#ffffff");
+                    }.bind(a)
+                );
 				$(a).attr('href', child_list[i].url);
 				$(li).append(a);
 			}
@@ -131,7 +142,7 @@ oldNeopetsChrome.AddNavListRecursive = function(parent_list, name, child_list, l
 				actual_list.css('background-color', '#000000').css('color', '#ffffff');
 				actual_list.css('padding', '5px');
 			},
-			//hover outerHeight
+			//hover out
 			function(e){
 				$(".onc_nav_depth_"+depth).css("display", "none");
 				$(list_container).css('color', '#ffffff');
