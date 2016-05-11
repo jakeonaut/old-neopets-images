@@ -1,6 +1,6 @@
 {
   "name": "Old Neopets Images",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "manifest_version": 2,
   "description": "Modify your Neopets experience to your liking!",
   "options_page": "options.html",
