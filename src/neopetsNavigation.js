@@ -100,6 +100,7 @@ oldNeopetsChrome.AddNavListRecursive = function(parent_list, name, child_list, l
 		actual_list.addClass("onc_nav_depth_"+depth);
 		for (var i = 0; i < child_list.length; i++){
 			var li = $(document.createElement('li'));
+			$(li).css("color", "#ffffff");
 			if (child_list[i].links !== undefined){
 				oldNeopetsChrome.AddNavListRecursive(actual_list, child_list[i].name, child_list[i].links, child_list[i].url, depth+1);
 			}else{
