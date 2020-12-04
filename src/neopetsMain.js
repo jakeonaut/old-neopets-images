@@ -54,13 +54,4 @@ function doShit() {
 	//other misc, why even have options
 	oldNeopetsChrome.AddNeofriendNameLinks();
 	oldNeopetsChrome.LinkToConcertHall();
-  
-  infiniteDiceARoo();
-}
-
-function infiniteDiceARoo() {
-  const randomSeconds = Math.floor(Math.random() * 10) + 1;
-  window.setTimeout(() => {
-    $("input[value='Lets Play! (Costs 5 NP)'], input[value='Play Dice-A-Roo'], input[value='Roll Again'], input[value='Press Me']").click()
-  }, randomSeconds * 500);
 }
