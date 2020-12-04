@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<head><title>Old Neopets Images Options</title></head>
+<body>
+	<h1 style="width: 480px">Old Neopets Images Extension Options</h1>
+	<label>
+		<input type="checkbox" id="temp_disable_extension">
+		<span style="font-size: 24px;">Temporarily Disable Extension</span>
+	</label>
+	<br/><br/>
+	<label>
+		<input type="checkbox" id="change_new_images_to_old">
+		Change to Old Neopets Images
+	</label>
+	<br/><br/>
+	<label>
+		<input type="checkbox" id="disable_pet_customization">
+		Disable Pet Customization
+	</label>
+	<br/><br/>
+	<label>
+		<input type="checkbox" id="add_navigation_links">
+		Add Navigation Links
+		<br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" id="NAVIGATION_DAILIES"> Dailies List<br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" id="NAVIGATION_WORLDS"> Map World Locations<br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" id="NAVIGATION_CUSTOM"> Custom<br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" value="Add Link" id="add_custom_nav_link"><br/><br/>
+		<div id="custom_nav_links">
+			<div class="custom_nav_link">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="nav_name"> <input type="text" class="nav_url"> 
+			</div>
+		</div>
+	</label>
+	<br/><br/>
+	<label>
+		<input type="checkbox" id="old_shop_keepers">
+		Old Shop Keepers (where applicable)
+	</label>
+	<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;<label>
+		<input type="checkbox" id="random_shop_wizard">
+		Random Shop Wizard
+	</label>
+	<br/><br/>
+	<label>
+		<input type="checkbox" id="remove_bottom_image">
+		Remove Random Footer Image
+	</label>
+	<br/><br/>
+	<label>
+		<input type="checkbox" id="add_quickref_to_sidebar">
+		Add Small Quickref to Sidebar
+	</label>
+	<br/><br/>
+	<label>
+		<input type="checkbox" id="game_link_automatic">
+		Make Game Links Direct To Game
+	</label>
+	<br/><br/>
+	<div id="status"></div>
+	<button id="save">Save Options</button>
+	
+	<script src="options.js"></script>
+</body>
+</html>

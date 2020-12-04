@@ -1,0 +1,17 @@
+http://bookofages.jellyneo.net/history/old-pets/
+http://www.neopets.com/~Mega_Bombe
+
+2. TODO:
+	1. why is page action on non neopets pages?
+	2. Options Game Link is messed up
+	3. My Script breaks Kiko Pop!! allow disabling extension through page action?
+	9. old neopets explore
+		http://images.neopets.com/maps/explore/explore_2005_02.gif
+		http://bookofages.jellyneo.net/lands/
+		-if anything convert the flash images to html (screenshot the new maps and make image links)
+	8. the battledome (is this even possible)
+3. Bug:
+	-there are a number of rainbowpool options that don't work correctly but should
+		-Abandoned aishas, bruce, ixi, elephante?
+	-why does nav options blur the text?
+	
