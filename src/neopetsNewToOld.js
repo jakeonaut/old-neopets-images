@@ -196,27 +196,27 @@ oldNeopetsChrome.QuickRefCustomizationScript = function(){
 	var url = window.location.href;
 	if (url.indexOf("http://www.neopets.com/quickref.phtml") < 0) return;
   
-  const species = $(Array.from(document.querySelectorAll('th')).find(el => el.textContent === 'Species:')).next()[0].textContent.toLowerCase();
-  const colour = $(Array.from(document.querySelectorAll('th')).find(el => el.textContent === 'Colour:')).next()[0].textContent.toLowerCase();
-  // Okay IF i'm on the quickref page, record the species + colour of the neopet
-  // Pass that to ChangeImageByID
-  // and IF the ChangeImageByID fails, then fetch the old image by species + colour if it exists
-  // and cache the "customization" image url with the "old image" url
-  // TODO(OPTIONAL) pass this to cakeandturtles as well so that we can keep a running list? too hard for now
-  
+  const speciesList = 
+    Array.from($(Array.from(document.querySelectorAll('th')).filter(el => el.textContent === 'Species:')).next())
+    .map((x) => x.textContent.toLowerCase());
+  const colourList = 
+    Array.from($(Array.from(document.querySelectorAll('th')).filter(el => el.textContent === 'Colour:')).next())
+    .map((x) => x.textContent.toLowerCase());
   
   // Hide the flash...
   Array.from(document.querySelectorAll("embed")).forEach((x) => { x.style.display = "none"; });
 
+  let petIndex = 0;
 	for (var i = 0; i < $("div").length; i++){
 		var div = $($('div')[i]);
-		if ($(div).hasClass('pet_image')){
+		if ($(div).hasClass('pet_image')) {
+      
 			var bg_img_url = $(div).css("background-image");
 			if (bg_img_url.indexOf("url(") >= 0)
 				bg_img_url = bg_img_url.substring(5, bg_img_url.length-2);
 			var image = $(document.createElement('img'));
 			$(image).attr('src', bg_img_url);
-			if (oldNeopetsChrome.ChangeImageByID(image, true /* no_happy */, false /* battledome */, species, colour)){
+			if (oldNeopetsChrome.ChangeImageByID(image, true /* no_happy */, false /* battledome */, speciesList[petIndex], colourList[petIndex])){
 				$(div).attr('original_src', $(div).css('background-image'));
 				$(div).css('background-image', "url('"+$(image).attr('src')+"')");
 				//Need to handle the case for incorrect background-images
@@ -236,6 +236,7 @@ oldNeopetsChrome.QuickRefCustomizationScript = function(){
 				$(div).css('background-position', '25px 25px');
 				$(div).css('background-repeat', 'no-repeat');
 			}
+      petIndex++;
 		}
 	}
 	
