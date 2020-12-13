@@ -1963,12 +1963,71 @@ var collection = [	{colour: 'alien', species: 'aisha', ids: ['w5zb4rd8','lwmzv8g
 	{colour: 'yellow', species: 'xweetok', ids: ['o36btnbf','8fwx72gm']},
 	{colour: 'yellow', species: 'yurble', ids: ['vfqkbvv6','4l48jddq']},
 	{colour: 'yellow', species: 'zafara', ids: ['onxr95x6','9n8z92fc']}];
-oldNeopetsChrome.image_collection = collection}
+  
+  oldNeopetsChrome.image_collection = collection;
+
+  const itemsCallback = (items) => {
+    //  items = [ { "cachedPetIds": [{colour: "", species: "", newIds: ["", ...]}] } ]
+    items.forEach((item) => {
+      for (const [key, value] of Object.entries(item)) {
+        var [colour, species] = key.split(";");
+        
+        var collectionEntry = oldNeopetsChrome.image_collection.find((x) => { return x.colour == colour && x.species == species; });
+        if (collectionEntry) {
+          var ids = collectionEntry.ids;
+          ids.push(value);
+        }
+      }
+    });
+  };
+  
+  if (chrome.storage) {
+    chrome.storage.sync.get(null, itemsCallback);
+  } else {
+    const items = JSON.parse(localStorage.getItem("oldNeopetsImages"));
+    itemsCallback(items);
+  }
+}
 oldNeopetsChrome.GenerateCollectionArray();
-oldNeopetsChrome.ChangeImageByID = function(image, no_happy = false, battledome = false){
+oldNeopetsChrome.ChangeImageByID = function(image, no_happy = false, battledome = false, species, colour){
 	if (oldNeopetsChrome.ChangeImageByManualID(image, no_happy, battledome)) return true;
 	var collection = oldNeopetsChrome.image_collection;	
   for (var i = 0; i < collection.length; i++){
-		if (oldNeopetsChrome.TryChangeImage(image, collection[i].colour, collection[i].species, collection[i].ids, no_happy, battledome)) return true;
+		if (oldNeopetsChrome.TryChangeImage(image, collection[i].colour, collection[i].species, collection[i].ids, no_happy, battledome)) {
+      return true;
+    }
 	}
+  
+  if (species && colour) {
+    // Okay, image is not in our database... let's try getting color/species of pet?
+    var collectionEntry = oldNeopetsChrome.image_collection.find((x) => { return x.colour == colour && x.species == species; });
+    if (collectionEntry) {
+      const newId = $(image).attr('src').split("/")[4];    
+      var ids = collectionEntry.ids;
+      ids.push(newId);
+      
+      // Save the data to storage... hopefully
+      const key = `${colour};${species}`;
+      if (chrome.storage) {
+        chrome.storage.sync.set({ key : newId }, () => {
+            //  A data saved callback omg so fancy
+            console.log("data saved :)");
+        });
+      } else {
+        //  items = [ { "red;shoyru": "25sssr46u"},  ]
+        const items = JSON.parse(localStorage.getItem("oldNeopetsImages"));
+        const newItem = {};
+        newItem[key] = newId;
+        items.push(newItem);
+        localStorage.setItem("oldNeopetsImages", JSON.stringify(items));
+      }
+      
+      // Now try this again...
+      for (var i = 0; i < collection.length; i++){
+        if (oldNeopetsChrome.TryChangeImage(image, collection[i].colour, collection[i].species, collection[i].ids, no_happy, battledome)) {
+          return true;
+        }
+      }
+    }
+  }
 }

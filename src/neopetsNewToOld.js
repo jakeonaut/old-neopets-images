@@ -4,10 +4,10 @@ oldNeopetsChrome.ChangeAllImages = function(image){
 	oldNeopetsChrome.RainbowPoolScript();
 	oldNeopetsChrome.AdoptPageScript();
 	oldNeopetsChrome.CreateNeopetScript();
-	if (oldNeopetsChrome.disable_pet_customization){
-		// oldNeopetsChrome.QuickRefCustomizationScript();
+	// if (oldNeopetsChrome.disable_pet_customization){
+		oldNeopetsChrome.QuickRefCustomizationScript();
 		oldNeopetsChrome.PetLookupScript();
-	}
+	// }
 	//will cycle through all the actual img tags
 	for (var i = 0; i < $("img").length; i++){
 		var image = $($("img")[i]);
@@ -32,38 +32,37 @@ oldNeopetsChrome.ChangeAllImages = function(image){
 		}
 		//Exchange all img with the actual pet name in the url
 		else if (image.attr('src') && image.attr('src').indexOf("pets.neopets.com/cpn/") >= 0 && image.attr('already_changed') === undefined){
-			//make an ajax call to find out the redirected img src
-			$.ajax({
-				type: "GET",
-				url: "http://cakeandturtles.nfshost.com/getRedirect.php",
-				data: {url: image.attr('src')},
-				local_image: image,
-				//upon success
-				//change img tag's src to be the redirected img src
-				//and proceed as usual
-				success: function(final_url){
-					console.log("before: " + image.attr('src') + "after: " + final_url);
-					final_url = "http://pets.neopets.com" + final_url;
-					$(this.local_image).attr('src', final_url);
-					oldNeopetsChrome.ChangeImageByID(this.local_image);
-					$(this.local_image)[0].onerror = function(){
-						this.onerror = "";
-						$(this).attr('src', $(this).attr('original_src'));
-					}
-				}
-			});
+      ((image) => {
+        //make an ajax call to find out the redirected img src
+        fetch(`https://cakeandturtles.nfshost.com/getRedirect.php?url=${image.attr('src')}`, {
+          method: "GET",
+        }).then((body) => body.text()).then((response) => {
+          console.log("before: " + image.attr('src') + ", after: " + response);
+          response = "http://pets.neopets.com" + response;
+          $(image).attr('src', response);
+          oldNeopetsChrome.ChangeImageByID(image);
+          $(image)[0].onerror = function() {
+            this.onerror = "";
+            $(this).attr('src', $(this).attr('original_src'));
+          }
+        });
+      })(image);
 		}
 		//For quickref toggle images, the pet image is set as the background image, not the src :(
 		else if (image.css('background-image') && image.css('background-image').indexOf('pets.neopets.com/cp/') >= 0 && image.attr('already_changed') === undefined){
 			var bg_img_url = $(image).css("background-image");
-			if (bg_img_url.indexOf("url('") >= 0) {
+			if (bg_img_url.indexOf("url(") >= 0) {
 				bg_img_url = bg_img_url.substring(5, bg_img_url.length-2);
       }
       $(image).attr('original_src', bg_img_url);
 			var bg_image = $(document.createElement('img'));
 			$(bg_image).attr('src', bg_img_url);
 			oldNeopetsChrome.ChangeImageByID(bg_image, true /* no_happy */);
-			$(image).css('background-image', "url('"+$(bg_image).attr('src')+"')");
+      if ($(bg_image).attr('src').indexOf("url(") >= 0) {
+        $(image).css('background-image', $(bg_image).attr('src'));
+      } else {
+        $(image).css('background-image', "url('"+$(bg_image).attr('src')+"')");
+      }
 			$(image).css('background-size', $(image).width()+"px "+$(image).height()+"px");
 			$(image)[0].onerror = function(){
 				this.onerror = "";
@@ -86,7 +85,7 @@ oldNeopetsChrome.ChangeAllImages = function(image){
       if (bg_img_url && bg_img_url.indexOf('pets.neopets.com/cp/') >= 0 && image.attr('already_changed') === undefined) {
         let lastSprite = bg_img_url;
         
-        if (bg_img_url.indexOf("url('") >= 0) {
+        if (bg_img_url.indexOf("url(") >= 0) {
           bg_img_url = bg_img_url.substring(5, bg_img_url.length-2);
         }
         divImage.attr('original_src', bg_img_url);
@@ -196,16 +195,28 @@ oldNeopetsChrome.RainbowPoolScript = function(){
 oldNeopetsChrome.QuickRefCustomizationScript = function(){
 	var url = window.location.href;
 	if (url.indexOf("http://www.neopets.com/quickref.phtml") < 0) return;
+  
+  const species = $(Array.from(document.querySelectorAll('th')).find(el => el.textContent === 'Species:')).next()[0].textContent.toLowerCase();
+  const colour = $(Array.from(document.querySelectorAll('th')).find(el => el.textContent === 'Colour:')).next()[0].textContent.toLowerCase();
+  // Okay IF i'm on the quickref page, record the species + colour of the neopet
+  // Pass that to ChangeImageByID
+  // and IF the ChangeImageByID fails, then fetch the old image by species + colour if it exists
+  // and cache the "customization" image url with the "old image" url
+  // TODO(OPTIONAL) pass this to cakeandturtles as well so that we can keep a running list? too hard for now
+  
+  
+  // Hide the flash...
+  Array.from(document.querySelectorAll("embed")).forEach((x) => { x.style.display = "none"; });
 
 	for (var i = 0; i < $("div").length; i++){
 		var div = $($('div')[i]);
 		if ($(div).hasClass('pet_image')){
 			var bg_img_url = $(div).css("background-image");
-			if (bg_img_url.indexOf("url('") >= 0)
+			if (bg_img_url.indexOf("url(") >= 0)
 				bg_img_url = bg_img_url.substring(5, bg_img_url.length-2);
 			var image = $(document.createElement('img'));
 			$(image).attr('src', bg_img_url);
-			if (oldNeopetsChrome.ChangeImageByID(image)){
+			if (oldNeopetsChrome.ChangeImageByID(image, true /* no_happy */, false /* battledome */, species, colour)){
 				$(div).attr('original_src', $(div).css('background-image'));
 				$(div).css('background-image', "url('"+$(image).attr('src')+"')");
 				//Need to handle the case for incorrect background-images
@@ -239,33 +250,32 @@ oldNeopetsChrome.PetLookupScript = function(){
 	var image = $(document.createElement('img'));
 	$(image).attr('src', "http://pets.neopets.com/cpn/"+pet_name+"/1/2.png");
 	$(image).attr('original_src', $(image).attr('src'));
-	$.ajax({
-		type: "GET",
-		url: "http://cakeandturtles.nfshost.com/getRedirect.php",
-		data: {url: image.attr('src')},
-		local_image: image,
-		//upon success
-		//change img tag's src to be the redirected img src
-		//and proceed as usual
-		success: function(final_url){
-			final_url = "http://pets.neopets.com" + final_url;
-			$(this.local_image).attr('src', final_url);
-			if (oldNeopetsChrome.ChangeImageByID(image)){
-				$(image).width(200);
-				$(image).height(200);
-				$(image).css('padding', '50px');
-				var custom_neopet_view = $("#CustomNeopetView");
-				$("#CustomNeopetView").replaceWith(image);
-				
-				$(image)[0].onerror = function(){
-					this.onerror = "";
-					$(image).attr('src', $(image).attr('original_src'));
-					$(image).width(300);
-					$(image).height(300);
-					$(image).css('padding', '0px');
-					$(image).replaceWith(custom_neopet_view);
-				}
-			}
-		}
-	});
+  //make an ajax call to find out the redirected img src
+  ((image) => {
+    fetch(`https://cakeandturtles.nfshost.com/getRedirect.php?url=${image.attr('src')}`, {
+      method: "GET",
+    }).then((body) => body.text()).then((response) => {
+      //upon success
+      //change img tag's src to be the redirected img src
+      //and proceed as usual
+      response = "http://pets.neopets.com" + response;
+      $(image).attr('src', response);
+      if (oldNeopetsChrome.ChangeImageByID(image, true /* no_happy */)){
+        $(image).width(200);
+        $(image).height(200);
+        $(image).css('padding', '50px');
+        var custom_neopet_view = $("#CustomNeopetView");
+        $("#CustomNeopetView").replaceWith(image);
+        
+        $(image)[0].onerror = function(){
+          this.onerror = "";
+          $(image).attr('src', $(image).attr('original_src'));
+          $(image).width(300);
+          $(image).height(300);
+          $(image).css('padding', '0px');
+          $(image).replaceWith(custom_neopet_view);
+        }
+      }
+    });
+  })(image);
 }

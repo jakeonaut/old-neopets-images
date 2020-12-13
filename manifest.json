@@ -1,6 +1,6 @@
 {
   "name": "Old Neopets Images",
-  "version": "0.1.0",
+  "version": "1.0.2",
   "manifest_version": 2,
   "description": "Modify your Neopets experience to your liking!",
   "options_page": "options.html",
@@ -10,6 +10,12 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
+  "permissions": [
+    "storage",
+    "tabs",
+    "http://www.neopets.com/*",
+    "http://ncmall.neopets.com/"
+  ],
   "default_locale": "en",
   "content_scripts": [
     {
@@ -22,7 +28,7 @@
     }
   ],  
   "background": {
-	"scripts": ["background.js"]
+    "scripts": ["background.js"]
   },
   "web_accessible_resources": [ "src/jquery.js",
 								"src/neopetsInit.js",
@@ -33,13 +39,9 @@
 								"src/neopetsNewToOld.js",
 								"src/neopetsMisc.js",
 								"src/neopetsNavigation.js",
-								"src/neopetsExplore.js",
+                "src/neopetsExplore.js",
+                "src/neopetsOldSidebar.js",
 								"src/neopetsMain.js"],
-  "permissions": [
-	"tabs",
-	"storage",
-	"http://*/"
-  ],
   "page_action": {
     "default_icon": {
 		"19": "icons/icon19.png",

@@ -1,20 +1,20 @@
 console.log("neopetsMain");
 
 //THESE OPTIONS are set in contentscript from chrome storage
-/*oldNeopetsChrome.change_new_images_to_old = true;
-oldNeopetsChrome.disable_pet_customization = true;
-oldNeopetsChrome.remove_bottom_image = true;
-oldNeopetsChrome.add_neofriend_name_links = true;
-oldNeopetsChrome.add_quickref_to_sidebar = true;
+// oldNeopetsChrome.change_new_images_to_old = true;
+// oldNeopetsChrome.disable_pet_customization = true;
+// oldNeopetsChrome.remove_bottom_image = true;
+// oldNeopetsChrome.add_neofriend_name_links = true;
+// oldNeopetsChrome.add_quickref_to_sidebar = true;
 
-oldNeopetsChrome.add_navigation_links = true;
-	oldNeopetsChrome.NAVIGATION_DAILIES = true;
-	oldNeopetsChrome.NAVIGATION_WORLDS = true;
-	oldNeopetsChrome.NAVIGATION_CUSTOM = true;
-	oldNeopetsChrome.custom_navigation_links = [];
-*/
+// oldNeopetsChrome.add_navigation_links = true;
+	// oldNeopetsChrome.NAVIGATION_DAILIES = true;
+	// oldNeopetsChrome.NAVIGATION_WORLDS = true;
+	// oldNeopetsChrome.NAVIGATION_CUSTOM = true;
+	// oldNeopetsChrome.custom_navigation_links = [];
 
-if (!oldNeopetsChrome.temp_disable_extension){
+
+if (oldNeopetsChrome.temp_disable_extension !== false){
   if (!window.$) {
     // Load the script
     var script = document.createElement("SCRIPT");
@@ -31,6 +31,9 @@ if (!oldNeopetsChrome.temp_disable_extension){
 }
 
 function doShit() {
+  // oldNeopetsChrome.OldSidebar();
+  oldNeopetsChrome.NeopetsExplore();
+  
   if (oldNeopetsChrome.add_navigation_links === true){
 		oldNeopetsChrome.AddNavigationLinks();
 	}
@@ -56,6 +59,10 @@ function doShit() {
 	oldNeopetsChrome.LinkToConcertHall();
   
   infiniteDiceARoo();
+  
+  if (!chrome.storage && localStorage.getItem("oldNeopetsImages") == null) {
+    localStorage.setItem("oldNeopetsImages", JSON.stringify([]));
+  }
 }
 
 function infiniteDiceARoo() {

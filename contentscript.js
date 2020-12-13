@@ -10,6 +10,7 @@ var loadScript = function(scriptName, callback){
 
 var loadVariables = function(callback){
 	chrome.storage.sync.get({
+    temp_disable_extension: false,
 		change_new_images_to_old: true,
 		disable_pet_customization: false,
 		add_navigation_links: true,
@@ -50,7 +51,7 @@ var loadVariables = function(callback){
 	});
 }
 
-var scripts = ["jquery", "neopetsInit", null, "neopetsCollection_helper", "neopetsCollection", "neopetsAdoption", "neopetsCreate", "neopetsNewToOld", "neopetsMisc", "neopetsNavigation", "neopetsExplore", "neopetsMain"];
+var scripts = ["jquery", "neopetsInit", null, "neopetsCollection_helper", "neopetsCollection", "neopetsAdoption", "neopetsCreate", "neopetsNewToOld", "neopetsMisc", "neopetsNavigation", "neopetsExplore", "neopetsOldSidebar", "neopetsMain"];
 var callback = function(){};
 for (var i = scripts.length-1; i >= 0; i--){
 	if (scripts[i] === null){
