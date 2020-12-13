@@ -58,16 +58,7 @@ function doShit() {
 	oldNeopetsChrome.AddNeofriendNameLinks();
 	oldNeopetsChrome.LinkToConcertHall();
   
-  infiniteDiceARoo();
-  
   if (!chrome.storage && localStorage.getItem("oldNeopetsImages") == null) {
     localStorage.setItem("oldNeopetsImages", JSON.stringify([]));
   }
-}
-
-function infiniteDiceARoo() {
-  const randomSeconds = Math.floor(Math.random() * 10) + 1;
-  window.setTimeout(() => {
-    $("input[value='Lets Play! (Costs 5 NP)'], input[value='Play Dice-A-Roo'], input[value='Roll Again'], input[value='Press Me']").click()
-  }, randomSeconds * 500);
 }
